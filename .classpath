@@ -4,5 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/java-6-openjdk-i386"/>
 	<classpathentry kind="lib" path="/home/nenad/oissi/EditorLook/lib/napkinlaf-alpha001.jar"/>
 	<classpathentry kind="lib" path="/home/nenad/oissi/EditorLook/lib/seaglasslookandfeel-0.2.jar"/>
+	<classpathentry kind="lib" path="lib/weblaf-complete-1.28.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

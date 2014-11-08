@@ -13,51 +13,55 @@ import javax.swing.JRadioButtonMenuItem;
  * smeštati u glavni prozor aplikacije
  * 
  */
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 public class MyMenuBar extends JMenuBar{
 	
 	public MyMenuBar (){
 		
 	    JMenu file=new JMenu("File");
-	    JMenu miNew =new JMenu("New");
+	    JMenu edit =new JMenu("Edit");
+	    JMenu select = new JMenu("Select");
 	    JMenu about = new JMenu("About");
 	    JMenu help = new JMenu("Help");
-		JMenuItem miProject=new JMenuItem("Project");
-		JMenuItem miPackage=new JMenuItem("Package");
-		miNew.add(miProject);
-		miNew.addSeparator();
-		miNew.add(miPackage);
-		
-		JMenuItem miOpen =new JMenuItem("Open");
-		JMenuItem miClose =new JMenuItem("Close");
-		JMenuItem miCloseAll =new JMenuItem("Close All");
+
+		//File stavka
+		JMenuItem miNewProject =new JMenuItem("New Project");
+		JMenuItem miNewFile =new JMenuItem("New File");
+		JMenuItem miSaveProject =new JMenuItem("Save Project");
+		JMenuItem miImport =new JMenuItem("Import");
+		JMenuItem miExport =new JMenuItem("Export");
+		JMenuItem miExit =new JMenuItem("Exit");
 				
-		file.add(miNew);
+		file.add(miNewProject);
+		file.add(miNewFile);
 		file.addSeparator();
-		file.add(miOpen);
-		file.addSeparator();
-		file.add(miClose);
-		file.add(miCloseAll);
-		file.addSeparator();
+		file.add(miSaveProject);
+		file.add(miImport);
+		file.add(miExport);
+		file.add(miExit);
 		
-		//radio button-i u ovom primeru rade kao grupa:
-		ButtonGroup bg1=new ButtonGroup();
-		JRadioButtonMenuItem rmiInsert=new 
-		JRadioButtonMenuItem("Insert",true);
-		JRadioButtonMenuItem rmiOver=new
-		JRadioButtonMenuItem("Overtype");
-		bg1.add(rmiInsert);
-		bg1.add(rmiOver);
+		//Edit stavka
+		JMenuItem miUndo =new JMenuItem("Undo");
+		JMenuItem miRedo =new JMenuItem("Redo");
+		JMenuItem miDelete =new JMenuItem("Delete");
 		
-		file.add(rmiInsert);
-		file.add(rmiOver);
+		edit.add(miUndo);
+		edit.add(miRedo);
+		edit.add(miDelete);
 		
-		JMenu edit=new JMenu("Edit");
-		JMenu source=new JMenu("View");
+		//Select
+		JMenuItem miSelectLeft =new JMenuItem("Select left");
+		JMenuItem miSelectRight =new JMenuItem("Select right");
+		JMenuItem miSelectAll =new JMenuItem("Select all");
+		
+		select.add(miSelectLeft);
+		select.add(miSelectRight);
+		select.add(miSelectAll);
+		
 		
 		add(file);
 		add(edit);
-		add(source);
+		add(select);
 		add(about);
 		add(help);
 		

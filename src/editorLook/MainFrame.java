@@ -13,9 +13,11 @@ import javax.swing.JTree;
 import javax.swing.UIManager;
 import javax.swing.tree.DefaultMutableTreeNode;
 
+import com.alee.laf.WebLookAndFeel;
+
 import events.ActionManager;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 public class MainFrame extends JFrame
 {
 	
@@ -60,7 +62,8 @@ public class MainFrame extends JFrame
 		this.addWindowListener(new WindowHandler());  //dodao svoj event listener za sam prozor
 		try {
 		   // UIManager.setLookAndFeel("napkin.NapkinLookAndFeel");
-		    UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+		   // UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
+			WebLookAndFeel.install();
 		} catch (Exception e) {
 		    e.printStackTrace();
 		}
@@ -78,23 +81,19 @@ public class MainFrame extends JFrame
 		setJMenuBar(menu);
 		
 		
-		DefaultMutableTreeNode root = new DefaultMutableTreeNode("Workspace");
+		TreeView tree = new TreeView();
 		
-		JTree tree = new JTree(root);
 		add(tree, BorderLayout.WEST);
 		
 		JSplitPane sp1=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,tree,desktopManager);
-		//sp1.setOneTouchExpandable(true);
 		sp1.setDividerLocation(170);
-        //zbog ove linije koda crveni panel se može smanjiti samo do 200px širine
-		//tree.setMinimumSize(new Dimension(200,200));
 		
 		
 		toolbar = new MyToolBar();
 		add(toolbar, BorderLayout.NORTH);
 		
-		JLabel statusLabel = new JLabel("Status Bar");
-		add(statusLabel, BorderLayout.SOUTH);
+		StatusBar statusBar = new StatusBar();
+		add(statusBar, BorderLayout.SOUTH);
 		add(mainPanel);
 		
 		add(sp1, BorderLayout.CENTER);
