@@ -5,13 +5,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.JTree;
 import javax.swing.UIManager;
-import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import com.alee.laf.WebLookAndFeel;
 
@@ -27,7 +25,16 @@ public class MainFrame extends JFrame
 	private MyToolBar toolbar;
 	private FormManager desktopManager;
 	private ActionManager actionManager;
+	private TreeView tree;
 	
+	public TreeView getTree() {
+		return tree;
+	}
+
+	public void setTree(TreeView tree) {
+		this.tree = tree;
+	}
+
 	public FormManager getDesktopManager() {
 		return desktopManager;
 	}
@@ -60,6 +67,8 @@ public class MainFrame extends JFrame
 		setSize(800, 600);
 		setTitle("Super senzetivni, turbo folk ekstra editor");
 		this.addWindowListener(new WindowHandler());  //dodao svoj event listener za sam prozor
+		
+		
 		try {
 		   // UIManager.setLookAndFeel("napkin.NapkinLookAndFeel");
 		   // UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
@@ -81,8 +90,7 @@ public class MainFrame extends JFrame
 		setJMenuBar(menu);
 		
 		
-		TreeView tree = new TreeView();
-		
+		tree = new TreeView();
 		add(tree, BorderLayout.WEST);
 		
 		JSplitPane sp1=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,tree,desktopManager);

@@ -11,17 +11,20 @@ import editorLook.MainFrame;
 @SuppressWarnings("serial")
 public class NewDefaultFormAction extends AbstractAction
 {
+	static int i = 1;
+	
 	public NewDefaultFormAction()
 	{
 		putValue(MNEMONIC_KEY, KeyEvent.VK_N);
 	}
 	
 	
+	//TODO kad ovo pozovis kao addFrame() ne prikaze se?
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		DefaultForm form = new DefaultForm();
-		MainFrame.getInstance().getDesktopManager().add(form);
-		
+		MainFrame.getInstance().getDesktopManager().addFrame("Form" + i);
+		MainFrame.getInstance().getTree().addNode("Form" + i);
+		i++;
 	}
 
 }

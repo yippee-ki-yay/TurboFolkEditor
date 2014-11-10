@@ -89,6 +89,8 @@ public class MyToolBar extends JToolBar{
 		JButton btnDelete = new JButton();
 		btnDelete.setToolTipText("Delete");
 		btnDelete.setIcon(new ImageIcon("img/delete.png"));
+		btnDelete.addActionListener(MainFrame.getInstance().
+				                    getActionManager().getDeleteAction());
 		add(btnDelete);
 		
 		JButton btnSelectAll = new JButton();
