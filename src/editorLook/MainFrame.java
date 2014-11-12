@@ -82,6 +82,8 @@ public class MainFrame extends JFrame
 	{
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		
+		tree = new TreeView();
+		
 		desktopManager = new FormManager();
 		
 		actionManager = new ActionManager();
@@ -90,7 +92,6 @@ public class MainFrame extends JFrame
 		setJMenuBar(menu);
 		
 		
-		tree = new TreeView();
 		add(tree, BorderLayout.WEST);
 		
 		JSplitPane sp1=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,tree,desktopManager);
@@ -115,6 +116,8 @@ public class MainFrame extends JFrame
 	public void setActionManager(ActionManager actionManager) {
 		this.actionManager = actionManager;
 	}
+	
+	
 	
 	/*
 	 * Ova klasa odgovara na eventove sa glavnog prozora

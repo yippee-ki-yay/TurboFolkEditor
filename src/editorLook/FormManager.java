@@ -1,38 +1,28 @@
 package editorLook;
 
 
-import java.awt.Dimension;
+
 import java.beans.PropertyVetoException;
 
-import javax.swing.DesktopManager;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
-import javax.swing.tree.DefaultMutableTreeNode;
 
 @SuppressWarnings("serial")
 public class FormManager extends JDesktopPane
-{
-	//JDesktopPane desktop;   //WHAT THE FLYING FUCK WERE YOU DOING????
-	
+{	
 	
 	public FormManager()
 	{
-		//desktop = new JDesktopPane();
 		
-		//frames = desktop.getAllFrames();
-		
-		//desktop.setMinimumSize(new Dimension(400, 400));
 	}
 	
 	public void addFrame(String name)
 	{
 		DefaultForm newForm = new DefaultForm(name);
 		add(newForm);
-		//add(newForm);
 	}
 
 	
-	//TODO test function selects allways first window
 	public void selectFrame(String frameName)
 	{
 		JInternalFrame frames[] = getAllFrames();
@@ -51,10 +41,38 @@ public class FormManager extends JDesktopPane
 		}
 	}
 	
+	public boolean isSomeoneSelected()
+	{
+		JInternalFrame frames[] = getAllFrames();
+		
+		for(int i = 0; i < frames.length; i++)
+		{
+			if(frames[i].isSelected())
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	//TODO srsly bro?
+	public String getSlectedFrame()
+	{
+		//nemamo selektovanih frejmova
+		if(getSelectedFrame() == null)
+		{
+			//probaj da selektujes bar neki frejm
+		}
+		
+		return getSelectedFrame().getTitle();
+				
+	}
+	
 	public void deleteSelected()
 	{
+		if(isSomeoneSelected())
 		getSelectedFrame().dispose();
-			
 	}
 	
 }

@@ -155,6 +155,7 @@ public class DynamicTree extends JPanel {
             System.out.println("New value: " + node.getUserObject());
         }
         public void treeNodesInserted(TreeModelEvent e) {
+        	System.out.println("new node");
         }
         public void treeNodesRemoved(TreeModelEvent e) {
         }

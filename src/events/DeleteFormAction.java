@@ -6,13 +6,21 @@ import javax.swing.AbstractAction;
 
 import editorLook.MainFrame;
 
+@SuppressWarnings("serial")
 public class DeleteFormAction extends AbstractAction
 {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-			MainFrame.getInstance().getDesktopManager().deleteSelected();
-			//MainFrame.getInstance().getTree().deleteNode();
+			
+		//Proveri da li postoji selektovan frejm pre nego sto brises
+		if(MainFrame.getInstance().getDesktopManager().isSomeoneSelected())
+		{
+			MainFrame.getInstance().getTree().
+            deleteNode(MainFrame.getInstance().getDesktopManager().getSlectedFrame());
+
+            MainFrame.getInstance().getDesktopManager().deleteSelected();
+		}	
 		
 	}
 
