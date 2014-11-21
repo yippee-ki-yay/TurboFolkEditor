@@ -25,42 +25,25 @@ public class MyMenuBar extends JMenuBar{
 	    JMenu help = new JMenu("Help");
 
 		//File stavka
-		JMenuItem miNewProject =new JMenuItem("New Project");
-		miNewProject.setAction(MainFrame.getInstance().getActionManager().
-				               getFormAction());
-		JMenuItem miNewFile =new JMenuItem("New File");
-		JMenuItem miSaveProject =new JMenuItem("Save Project");
-		JMenuItem miImport =new JMenuItem("Import");
-		JMenuItem miExport =new JMenuItem("Export");
-		JMenuItem miExit =new JMenuItem("Exit");
-				
-		file.add(miNewProject);
-		file.add(miNewFile);
+		file.add(MainFrame.getInstance().getActionManager().getProjectAction());
+		file.add(MainFrame.getInstance().getActionManager().getFormAction());
+		file.add(MainFrame.getInstance().getActionManager().getSaveAction());
+		file.add(MainFrame.getInstance().getActionManager().getImportAction());
+		file.add(MainFrame.getInstance().getActionManager().getExportAction());
+
+		//JMenuItem miExit =new JMenuItem("Exit");
+
 		file.addSeparator();
-		file.add(miSaveProject);
-		file.add(miImport);
-		file.add(miExport);
-		file.add(miExit);
 		
 		//Edit stavka
-		JMenuItem miUndo =new JMenuItem("Undo");
-		JMenuItem miRedo =new JMenuItem("Redo");
-		JMenuItem miDelete =new JMenuItem("Delete");
-		
-		edit.add(miUndo);
-		edit.add(miRedo);
-		edit.add(miDelete);
+		edit.add(MainFrame.getInstance().getActionManager().getUndoAction());
+		edit.add(MainFrame.getInstance().getActionManager().getRedoAction());
+		edit.add(MainFrame.getInstance().getActionManager().getDeleteAction());
 		
 		//Select
-		JMenuItem miSelectLeft =new JMenuItem("Select left");
-		JMenuItem miSelectRight =new JMenuItem("Select right");
-		JMenuItem miSelectAll =new JMenuItem("Select all");
-		
-		select.add(miSelectLeft);
-		select.add(miSelectRight);
-		select.add(miSelectAll);
-		
-		
+		select.add(MainFrame.getInstance().getActionManager().getPrevAction());
+		select.add(MainFrame.getInstance().getActionManager().getNextAction());
+			
 		add(file);
 		add(edit);
 		add(select);

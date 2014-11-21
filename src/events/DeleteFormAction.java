@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
 import editorLook.MainFrame;
@@ -15,6 +16,12 @@ public class DeleteFormAction extends AbstractAction
 	public DeleteFormAction()
 	{
 		putValue(MNEMONIC_KEY, KeyEvent.VK_D);
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
+		        KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		
+		putValue(SHORT_DESCRIPTION, "Delte Frame");
+		putValue(SMALL_ICON, new ImageIcon("img/delete.png"));
+		putValue(NAME, "Delete Frame");
 	}
 	
 	@Override

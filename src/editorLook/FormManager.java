@@ -41,6 +41,7 @@ public class FormManager extends JDesktopPane
 		}
 	}
 	
+	//postoji vec fija za ovo
 	public boolean isSomeoneSelected()
 	{
 		JInternalFrame frames[] = getAllFrames();

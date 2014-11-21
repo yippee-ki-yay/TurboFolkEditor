@@ -1,0 +1,2 @@
+1. Da li treba i memonici i acceleratori?
+2. Pozicija glavnog prozora, velicina (fullscreen) ?

@@ -4,6 +4,96 @@ public class ActionManager
 {
 	private NewDefaultFormAction formAction = new NewDefaultFormAction();
 	private DeleteFormAction deleteAction = new DeleteFormAction();
+	private NewProjectAction projectAction = new NewProjectAction();
+	private MinimizeAction minAction = new MinimizeAction();
+	private MaximizeAction maxAction = new MaximizeAction();
+	private PreviousFormAction prevAction = new PreviousFormAction();
+	private NextFormAction nextAction = new NextFormAction();
+	private UndoAction undoAction = new UndoAction();
+	private RedoAction redoAction = new RedoAction();
+	private ImportAction importAction = new ImportAction();
+	private ExportAction exportAction = new ExportAction();
+	private SaveAction saveAction = new SaveAction();
+
+	public MinimizeAction getMinAction() {
+		return minAction;
+	}
+
+	public void setMinAction(MinimizeAction minAction) {
+		this.minAction = minAction;
+	}
+
+	public MaximizeAction getMaxAction() {
+		return maxAction;
+	}
+
+	public void setMaxAction(MaximizeAction maxAction) {
+		this.maxAction = maxAction;
+	}
+
+	public PreviousFormAction getPrevAction() {
+		return prevAction;
+	}
+
+	public void setPrevAction(PreviousFormAction prevAction) {
+		this.prevAction = prevAction;
+	}
+
+	public NextFormAction getNextAction() {
+		return nextAction;
+	}
+
+	public void setNextAction(NextFormAction nextAction) {
+		this.nextAction = nextAction;
+	}
+
+	public UndoAction getUndoAction() {
+		return undoAction;
+	}
+
+	public void setUndoAction(UndoAction undoAction) {
+		this.undoAction = undoAction;
+	}
+
+	public RedoAction getRedoAction() {
+		return redoAction;
+	}
+
+	public void setRedoAction(RedoAction redoAction) {
+		this.redoAction = redoAction;
+	}
+
+	public ImportAction getImportAction() {
+		return importAction;
+	}
+
+	public void setImportAction(ImportAction importAction) {
+		this.importAction = importAction;
+	}
+
+	public ExportAction getExportAction() {
+		return exportAction;
+	}
+
+	public void setExportAction(ExportAction exportAcion) {
+		this.exportAction = exportAcion;
+	}
+
+	public SaveAction getSaveAction() {
+		return saveAction;
+	}
+
+	public void setSaveAction(SaveAction saveAction) {
+		this.saveAction = saveAction;
+	}
+
+	public NewProjectAction getProjectAction() {
+		return projectAction;
+	}
+
+	public void setProjectAction(NewProjectAction projectAction) {
+		this.projectAction = projectAction;
+	}
 
 	public DeleteFormAction getDeleteAction() {
 		return deleteAction;
