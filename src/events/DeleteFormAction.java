@@ -1,8 +1,10 @@
 package events;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.KeyStroke;
 
 import editorLook.MainFrame;
 
@@ -10,6 +12,11 @@ import editorLook.MainFrame;
 public class DeleteFormAction extends AbstractAction
 {
 
+	public DeleteFormAction()
+	{
+		putValue(MNEMONIC_KEY, KeyEvent.VK_D);
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 			

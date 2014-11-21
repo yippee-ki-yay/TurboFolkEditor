@@ -1,15 +1,16 @@
 package editorLook;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 import com.alee.laf.WebLookAndFeel;
 
@@ -64,8 +65,18 @@ public class MainFrame extends JFrame
 	
 	private void createWindow()
 	{
+		Toolkit tool = Toolkit.getDefaultToolkit();
+		
+		//get that d
+		Dimension d = tool.getScreenSize();
+		
 		setSize(800, 600);
 		setTitle("Super senzetivni, turbo folk ekstra editor");
+		setLocationRelativeTo(null);
+		//setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+		
+		ImageIcon iconImg = new ImageIcon("img/icon.png");
+		setIconImage(iconImg.getImage());
 		this.addWindowListener(new WindowHandler());  //dodao svoj event listener za sam prozor
 		
 		
@@ -106,6 +117,8 @@ public class MainFrame extends JFrame
 		add(mainPanel);
 		
 		add(sp1, BorderLayout.CENTER);
+		
+		
 	}
 	
 	

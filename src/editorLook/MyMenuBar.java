@@ -26,6 +26,8 @@ public class MyMenuBar extends JMenuBar{
 
 		//File stavka
 		JMenuItem miNewProject =new JMenuItem("New Project");
+		miNewProject.setAction(MainFrame.getInstance().getActionManager().
+				               getFormAction());
 		JMenuItem miNewFile =new JMenuItem("New File");
 		JMenuItem miSaveProject =new JMenuItem("Save Project");
 		JMenuItem miImport =new JMenuItem("Import");
