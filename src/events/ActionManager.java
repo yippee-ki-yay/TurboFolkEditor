@@ -14,6 +14,35 @@ public class ActionManager
 	private ImportAction importAction = new ImportAction();
 	private ExportAction exportAction = new ExportAction();
 	private SaveAction saveAction = new SaveAction();
+	private CascadeLayoutAction cascadeLayout = new CascadeLayoutAction();
+	private HorizontalLayoutAction horizontalLayout =
+			                        new HorizontalLayoutAction();
+	public CascadeLayoutAction getCascadeLayout() {
+		return cascadeLayout;
+	}
+
+	public void setCascadeLayout(CascadeLayoutAction cascadeLayout) {
+		this.cascadeLayout = cascadeLayout;
+	}
+
+	public HorizontalLayoutAction getHorizontalLayout() {
+		return horizontalLayout;
+	}
+
+	public void setHorizontalLayout(HorizontalLayoutAction horizontalLayout) {
+		this.horizontalLayout = horizontalLayout;
+	}
+
+	public VerticalLayoutAction getVerticalLayout() {
+		return verticalLayout;
+	}
+
+	public void setVerticalLayout(VerticalLayoutAction verticalLayout) {
+		this.verticalLayout = verticalLayout;
+	}
+
+	private VerticalLayoutAction verticalLayout = 
+									new VerticalLayoutAction();
 
 	public MinimizeAction getMinAction() {
 		return minAction;

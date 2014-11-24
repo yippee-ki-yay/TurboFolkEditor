@@ -34,6 +34,7 @@ public class Main {
 				});
 				
 				timer.start();
+				timer.setRepeats(false);
 				
 			}
 		});

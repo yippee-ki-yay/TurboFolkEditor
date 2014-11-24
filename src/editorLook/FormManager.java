@@ -2,6 +2,9 @@ package editorLook;
 
 
 
+
+import java.awt.Dimension;
+import java.awt.LayoutManager;
 import java.beans.PropertyVetoException;
 
 import javax.swing.JDesktopPane;
@@ -10,16 +13,27 @@ import javax.swing.JInternalFrame;
 @SuppressWarnings("serial")
 public class FormManager extends JDesktopPane
 {	
-	
+	FormLayoutManager layout;
+
 	public FormManager()
 	{
-		
+		setMinimumSize(new Dimension((int) MainFrame.getInstance().getSize().getWidth() - 350, 1));
+		layout = new FormLayoutManager(this);
 	}
 	
-	public void addFrame(String name)
+	public void addFrame(String name) 
 	{
 		DefaultForm newForm = new DefaultForm(name);
-		add(newForm);
+		layout.add(newForm);
+		newForm.toFront();  //ovakve fije koje uticu na frejm moramo pozvati posle add()
+		
+		/* sjebe on jtree code logiku
+		try {
+			newForm.setSelected(true);
+		} catch (PropertyVetoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 	}
 
 	
@@ -57,7 +71,7 @@ public class FormManager extends JDesktopPane
 		return false;
 	}
 	
-	//TODO srsly bro?
+	//TODO srsly bro? vec postoji metoda za ovo
 	public String getSlectedFrame()
 	{
 		//nemamo selektovanih frejmova
@@ -76,4 +90,13 @@ public class FormManager extends JDesktopPane
 		getSelectedFrame().dispose();
 	}
 	
+	
+	
+	public FormLayoutManager getLayoutManager() {
+		return layout;
+	}
+
+	public void setLayoutManager(FormLayoutManager layout) {
+		this.layout = layout;
+	}
 }

@@ -27,22 +27,8 @@ public class MainFrame extends JFrame
 	private FormManager desktopManager;
 	private ActionManager actionManager;
 	private TreeView tree;
+	private ToolBarPalet toolPalet;
 	
-	public TreeView getTree() {
-		return tree;
-	}
-
-	public void setTree(TreeView tree) {
-		this.tree = tree;
-	}
-
-	public FormManager getDesktopManager() {
-		return desktopManager;
-	}
-
-	public void setDesktopManager(FormManager desktopManager) {
-		this.desktopManager = desktopManager;
-	}
 
 	public static MainFrame getInstance()
 	{
@@ -53,7 +39,7 @@ public class MainFrame extends JFrame
 		return instance;
 	}
 	
-	public MainFrame()
+	private MainFrame()
 	{
 	}
 	
@@ -70,7 +56,7 @@ public class MainFrame extends JFrame
 		//get that d
 		Dimension d = tool.getScreenSize();
 		
-		setSize(800, 600);
+		setSize(800, 650);
 		setTitle("Super senzetivni, turbo folk ekstra editor");
 		setLocationRelativeTo(null);
 		//setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
@@ -90,9 +76,7 @@ public class MainFrame extends JFrame
 	}
 	
 	private void populateWindow()
-	{
-		JPanel mainPanel = new JPanel(new BorderLayout());
-		
+	{	
 		tree = new TreeView();
 		
 		desktopManager = new FormManager();
@@ -102,6 +86,9 @@ public class MainFrame extends JFrame
 		menu = new MyMenuBar();
 		setJMenuBar(menu);
 		
+		
+		toolPalet = new ToolBarPalet();
+		add(toolPalet, BorderLayout.EAST);
 		
 		add(tree, BorderLayout.WEST);
 		
@@ -114,7 +101,6 @@ public class MainFrame extends JFrame
 		
 		StatusBar statusBar = new StatusBar();
 		add(statusBar, BorderLayout.SOUTH);
-		add(mainPanel);
 		
 		add(sp1, BorderLayout.CENTER);
 		
@@ -128,6 +114,22 @@ public class MainFrame extends JFrame
 
 	public void setActionManager(ActionManager actionManager) {
 		this.actionManager = actionManager;
+	}
+	
+	public TreeView getTree() {
+		return tree;
+	}
+
+	public void setTree(TreeView tree) {
+		this.tree = tree;
+	}
+
+	public FormManager getDesktopManager() {
+		return desktopManager;
+	}
+
+	public void setDesktopManager(FormManager desktopManager) {
+		this.desktopManager = desktopManager;
 	}
 	
 	

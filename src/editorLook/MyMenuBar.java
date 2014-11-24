@@ -13,7 +13,9 @@ import javax.swing.JRadioButtonMenuItem;
  * smeštati u glavni prozor aplikacije
  * 
  */
-@SuppressWarnings({ "serial", "unused" })
+
+//TODO ubaci onaj layout prozora da moze iz menija
+
 public class MyMenuBar extends JMenuBar{
 	
 	public MyMenuBar (){

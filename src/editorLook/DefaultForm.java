@@ -58,8 +58,9 @@ public class DefaultForm extends JInternalFrame
 			
 			@Override
 			public void internalFrameClosed(InternalFrameEvent e) {
-				MainFrame.getInstance().getTree()
-				         .deleteNode(e.getInternalFrame().getTitle());
+				setVisible(false);
+				/*MainFrame.getInstance().getTree()
+				         .deleteNode(e.getInternalFrame().getTitle());*/
 				
 			}
 			

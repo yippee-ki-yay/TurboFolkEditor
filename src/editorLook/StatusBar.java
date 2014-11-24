@@ -19,22 +19,35 @@ public class StatusBar extends JPanel
 	JLabel stageMsg;
 	JLabel progressMsg;
 	
+	JLabel Msg1;
+	JLabel Msg2;
+	
 	public StatusBar()
 	{
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		setBorder(new BevelBorder(BevelBorder.LOWERED));
 		
-		welcomeMsg  = new JLabel("Vojvoda se vraca");
+		welcomeMsg  = new JLabel("Hodor");
 		add(welcomeMsg);
 		
 		add(Box.createHorizontalGlue());
 		
-	    stageMsg    = new JLabel("Application is running");
+		Msg1 = new JLabel("Hodor");
+		add(Msg1);
+		
+		add(Box.createHorizontalGlue());
+		
+		Msg2 = new JLabel("Hodor");
+		add(Msg2);
+		
+		add(Box.createHorizontalGlue());
+		
+	    stageMsg    = new JLabel("Hodor");
 	    add(stageMsg);
 	
 	    add(Box.createHorizontalGlue());
 	    
-	    progressMsg = new JLabel("100%");
+	    progressMsg = new JLabel("Hodor");
 	    
 	    add(progressMsg);
 	}
