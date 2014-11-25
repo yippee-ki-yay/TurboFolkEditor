@@ -1,8 +1,6 @@
 package editorLook;
 
 
-import java.util.Random;
-
 import javax.swing.JInternalFrame;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.event.InternalFrameListener;
@@ -14,16 +12,17 @@ import javax.swing.event.InternalFrameListener;
 public class DefaultForm extends JInternalFrame
 {
 	private static final long serialVersionUID = -7657600321157734995L;
-
-	public DefaultForm(String name)
+	
+	private int myId = 0;
+	
+	public DefaultForm(String title, int id)
 	{
-		super(name, true, true, true, true);
-		setLocation(100 + randomPosition(), 100 + randomPosition());
+		super(title, true, true, true, true);
 		setSize(200, 200);
 		setVisible(true);
-		toFront();
 		
-		//TODO anonimna klasa rly bro?
+		myId = id;
+		
 		this.addInternalFrameListener(new InternalFrameListener() {
 			
 			@Override
@@ -74,13 +73,8 @@ public class DefaultForm extends JInternalFrame
 	
 	}
 	
-	int randomPosition()
+	public int getId()
 	{
-		Random rand = new Random();
-		
-		int min = -100;
-		int max = 250;
-		
-		return rand.nextInt((max - min) + 1) + min;
+		return myId;
 	}
 }

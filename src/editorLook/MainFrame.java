@@ -57,7 +57,7 @@ public class MainFrame extends JFrame
 		Dimension d = tool.getScreenSize();
 		
 		setSize(850, 600);
-		setTitle("Super senzetivni, turbo folk ekstra editor");
+		setTitle("Graficki editor");
 		setLocationRelativeTo(null);
 		
 		ImageIcon iconImg = new ImageIcon("img/icon.png");
@@ -66,8 +66,6 @@ public class MainFrame extends JFrame
 		
 		
 		try {
-		   // UIManager.setLookAndFeel("napkin.NapkinLookAndFeel");
-		   // UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
 			WebLookAndFeel.install();
 		} catch (Exception e) {
 		    e.printStackTrace();

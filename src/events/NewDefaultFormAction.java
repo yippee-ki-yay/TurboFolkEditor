@@ -12,7 +12,7 @@ import editorLook.MainFrame;
 @SuppressWarnings("serial")
 public class NewDefaultFormAction extends AbstractAction
 {
-	static int i = 1;
+	private static int idCount = 0;
 	
 	public NewDefaultFormAction()
 	{
@@ -31,9 +31,9 @@ public class NewDefaultFormAction extends AbstractAction
 	//TODO kad ovo pozovis kao addFrame() ne prikaze se?
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		MainFrame.getInstance().getDesktopManager().addFrame("Form" + i);
-		MainFrame.getInstance().getTree().addNode("Form" + i);
-		i++;
+		MainFrame.getInstance().getDesktopManager().addFrame("Form" + idCount, idCount);
+		MainFrame.getInstance().getTree().addNode("Form" + idCount, idCount);
+		idCount++;
 	}
 
 }

@@ -7,6 +7,8 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
+import editorLook.MainFrame;
+
 
 @SuppressWarnings("serial")
 public class NextFormAction extends AbstractAction
@@ -20,13 +22,13 @@ public class NextFormAction extends AbstractAction
 		
 		putValue(SHORT_DESCRIPTION, "Next Frame");
 		putValue(SMALL_ICON, new ImageIcon("img/next_right.png"));
-		putValue(NAME, "NextFrame");
+		putValue(NAME, "Next Frame");
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 			
-	
+	MainFrame.getInstance().getDesktopManager().selectNext();
 		
 	}
 

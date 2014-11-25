@@ -24,6 +24,7 @@ public class MyMenuBar extends JMenuBar{
 	    JMenu edit =new JMenu("Edit");
 	    JMenu select = new JMenu("Select");
 	    JMenu help = new JMenu("Help");
+	    JMenu view = new JMenu("View");
 
 		//File stavka
 		file.add(MainFrame.getInstance().getActionManager().getProjectAction());
@@ -39,17 +40,28 @@ public class MyMenuBar extends JMenuBar{
 		//Edit stavka
 		edit.add(MainFrame.getInstance().getActionManager().getUndoAction());
 		edit.add(MainFrame.getInstance().getActionManager().getRedoAction());
-		edit.add(MainFrame.getInstance().getActionManager().getDeleteAction());
 		
 		//Select
 		select.add(MainFrame.getInstance().getActionManager().getPrevAction());
 		select.add(MainFrame.getInstance().getActionManager().getNextAction());
+		
+		select.addSeparator();
+		
+		select.add(MainFrame.getInstance().getActionManager().getMinAction());
+		select.add(MainFrame.getInstance().getActionManager().getMaxAction());
+		select.add(MainFrame.getInstance().getActionManager().getDeleteAction());
+		
+		//View
+		view.add(MainFrame.getInstance().getActionManager().getCascadeLayout());
+		view.add(MainFrame.getInstance().getActionManager().getHorizontalLayout());
+		view.add(MainFrame.getInstance().getActionManager().getVerticalLayout());
 		
 		help.add(MainFrame.getInstance().getActionManager().getAboutAction());
 			
 		add(file);
 		add(edit);
 		add(select);
+		add(view);
 		add(help);
 		
 	}

@@ -7,6 +7,8 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
+import editorLook.MainFrame;
+
 
 @SuppressWarnings("serial")
 public class MinimizeAction extends AbstractAction
@@ -26,7 +28,7 @@ public class MinimizeAction extends AbstractAction
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 			
-	
+	MainFrame.getInstance().getDesktopManager().Minimize();
 		
 	}
 

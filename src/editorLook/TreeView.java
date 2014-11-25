@@ -25,6 +25,7 @@ public class TreeView extends JScrollPane
 	private DefaultTreeModel model;
 	
 	private HashMap<String, DefaultMutableTreeNode> nodeFormMap;
+	private HashMap<Integer, DefaultMutableTreeNode> nodeMap;
 	
 
 	public TreeView()
@@ -32,6 +33,7 @@ public class TreeView extends JScrollPane
 		root = new DefaultMutableTreeNode("Workspace");
 		
 		nodeFormMap = new HashMap<String, DefaultMutableTreeNode>();
+		nodeMap = new HashMap<Integer, DefaultMutableTreeNode>();
 		
 		model = new DefaultTreeModel(root);
 		model.addTreeModelListener(new MyTreeModelListener());
@@ -67,7 +69,7 @@ public class TreeView extends JScrollPane
 		setViewportView(tree);
 	}
 	
-	public void addNode(String name)
+	public void addNode(String name, int id)
 	{
 		DefaultMutableTreeNode newNode = new DefaultMutableTreeNode(name);
 		DefaultMutableTreeNode rootNode = (DefaultMutableTreeNode)model.getRoot();
@@ -78,6 +80,7 @@ public class TreeView extends JScrollPane
 		
 		root.add(newNode);
 		nodeFormMap.put(name, newNode);
+		nodeMap.put(id, newNode);
 		
 	}
 	

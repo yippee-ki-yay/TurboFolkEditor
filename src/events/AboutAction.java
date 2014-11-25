@@ -16,9 +16,9 @@ public class AboutAction extends AbstractAction
 
 	public AboutAction()
 	{
-		putValue(MNEMONIC_KEY, KeyEvent.VK_A);
+		putValue(MNEMONIC_KEY, KeyEvent.VK_H);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
-		        KeyEvent.VK_A, ActionEvent.ALT_MASK));
+		        KeyEvent.VK_H, ActionEvent.CTRL_MASK));
 		
 		putValue(SHORT_DESCRIPTION, "About dialog");
 		putValue(SMALL_ICON, new ImageIcon("img/about.png"));

@@ -7,6 +7,8 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
+import editorLook.MainFrame;
+
 
 public class PreviousFormAction extends AbstractAction
 {
@@ -27,7 +29,7 @@ public class PreviousFormAction extends AbstractAction
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 			
-	
+	MainFrame.getInstance().getDesktopManager().selectPrevious();
 		
 	}
 

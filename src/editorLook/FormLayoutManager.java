@@ -4,6 +4,10 @@ import java.awt.Dimension;
 
 import javax.swing.JInternalFrame;
 
+//TODO updejtuj frejmove ako su neki obrisani
+//TODO kad se menja velicina?
+//TODO kod klasa dodavanja koristis u vise metoda isti kod
+
 public class FormLayoutManager {
 
 	enum Layout {CASCADE , VERTICAL, HORIZONTAL};
@@ -34,12 +38,22 @@ public class FormLayoutManager {
 		{
 			addCascadeForm(form);
 		}
+		else if(currState == Layout.HORIZONTAL)
+		{
+			addHorizontalForm(form);
+		}
+		else if(currState == Layout.VERTICAL)
+		{
+			addVerticalForm(form);
+		}
 		
 		desktopPane.add(form);
 	}
 	
 	public void ToCascade()
 	{
+		currState = Layout.CASCADE;
+		
         JInternalFrame frames[] = desktopPane.getAllFrames();
 		
 		int nFrames = frames.length;
@@ -55,6 +69,8 @@ public class FormLayoutManager {
 	
 	public void ToVertical()
 	{
+		currState = Layout.VERTICAL;
+		
 		JInternalFrame frames[] = desktopPane.getAllFrames();
 		
 		int nFrames = frames.length;
@@ -73,6 +89,8 @@ public class FormLayoutManager {
 	
 	public void ToHorizontal()
 	{
+		currState = Layout.HORIZONTAL;
+		
 		JInternalFrame frames[] = desktopPane.getAllFrames();
 		
 		int nFrames = frames.length;
@@ -108,5 +126,59 @@ public class FormLayoutManager {
 					desktopSize.height/2 - form.getHeight()/2);
 		}
 	}
+	
+	private void addHorizontalForm(DefaultForm form)
+	{
+         currState = Layout.HORIZONTAL;
+		
+		JInternalFrame frames[] = desktopPane.getAllFrames();
+		
+		int nFrames = frames.length;
+		
+		int currX = 0;
+		
+		for(JInternalFrame frame: frames)
+		{
+			frame.setSize(desktopPane.getWidth()/ nFrames+1,
+					desktopPane.getHeight());
+			
+			frame.setLocation(currX, 0);
+			currX += desktopPane.getWidth()/nFrames+1;
+		}
+		
+		form.setSize(desktopPane.getWidth()/ nFrames+1,
+				desktopPane.getHeight());
+		
+		form.setLocation(currX, 0);
+		currX += desktopPane.getWidth()/nFrames+1;
+	}
+	
+	private void addVerticalForm(DefaultForm form)
+	{
+        currState = Layout.VERTICAL;
+		
+		JInternalFrame frames[] = desktopPane.getAllFrames();
+		
+		int nFrames = frames.length;
+		
+		int currY = 0;
+		
+		for(JInternalFrame frame: frames)
+		{
+			frame.setSize(desktopPane.getWidth(),
+					desktopPane.getHeight()/nFrames+1);
+			
+			frame.setLocation(0, currY);
+			currY += desktopPane.getHeight()/nFrames+1;
+		}
+		
+		form.setSize(desktopPane.getWidth(),
+				desktopPane.getHeight()/nFrames);
+		
+		form.setLocation(0, currY);
+		currY += desktopPane.getHeight()/nFrames;
+		
+	}
+	
 	
 }
