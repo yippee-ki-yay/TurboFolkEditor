@@ -14,9 +14,50 @@ public class ActionManager
 	private ImportAction importAction = new ImportAction();
 	private ExportAction exportAction = new ExportAction();
 	private SaveAction saveAction = new SaveAction();
+	private AboutAction aboutAction = new AboutAction();
+
 	private CascadeLayoutAction cascadeLayout = new CascadeLayoutAction();
 	private HorizontalLayoutAction horizontalLayout =
 			                        new HorizontalLayoutAction();
+	
+	private DrawCircleAction circleAction = new DrawCircleAction();
+	private DrawSquareAction squareAction = new DrawSquareAction();
+	private DrawTriangleAction triangleAction = new DrawTriangleAction();
+	
+	
+	
+	public AboutAction getAboutAction() {
+		return aboutAction;
+	}
+
+	public void setAboutAction(AboutAction aboutAction) {
+		this.aboutAction = aboutAction;
+	}
+	
+	public DrawSquareAction getSquareAction() {
+		return squareAction;
+	}
+
+	public void setSquareAction(DrawSquareAction squareAction) {
+		this.squareAction = squareAction;
+	}
+
+	public DrawTriangleAction getTriangleAction() {
+		return triangleAction;
+	}
+
+	public void setTriangleAction(DrawTriangleAction triangleAction) {
+		this.triangleAction = triangleAction;
+	}
+
+	public DrawCircleAction getCircleAction() {
+		return circleAction;
+	}
+
+	public void setCircleAction(DrawCircleAction circleAction) {
+		this.circleAction = circleAction;
+	}
+
 	public CascadeLayoutAction getCascadeLayout() {
 		return cascadeLayout;
 	}

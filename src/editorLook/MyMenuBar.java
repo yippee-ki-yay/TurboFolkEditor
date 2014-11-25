@@ -1,11 +1,8 @@
 package editorLook;
 
 
-import javax.swing.ButtonGroup;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JRadioButtonMenuItem;
 
 /*
  * klasa nasleđuje JMenuBar i predstavlja kontejner
@@ -15,15 +12,17 @@ import javax.swing.JRadioButtonMenuItem;
  */
 
 //TODO ubaci onaj layout prozora da moze iz menija
+//TODO exit stavka
 
 public class MyMenuBar extends JMenuBar{
 	
+	private static final long serialVersionUID = 3801887044625659388L;
+
 	public MyMenuBar (){
 		
 	    JMenu file=new JMenu("File");
 	    JMenu edit =new JMenu("Edit");
 	    JMenu select = new JMenu("Select");
-	    JMenu about = new JMenu("About");
 	    JMenu help = new JMenu("Help");
 
 		//File stavka
@@ -45,11 +44,12 @@ public class MyMenuBar extends JMenuBar{
 		//Select
 		select.add(MainFrame.getInstance().getActionManager().getPrevAction());
 		select.add(MainFrame.getInstance().getActionManager().getNextAction());
+		
+		help.add(MainFrame.getInstance().getActionManager().getAboutAction());
 			
 		add(file);
 		add(edit);
 		add(select);
-		add(about);
 		add(help);
 		
 	}

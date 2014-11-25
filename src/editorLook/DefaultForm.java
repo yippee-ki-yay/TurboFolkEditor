@@ -1,7 +1,6 @@
 package editorLook;
 
 
-import java.beans.PropertyVetoException;
 import java.util.Random;
 
 import javax.swing.JInternalFrame;
@@ -12,9 +11,10 @@ import javax.swing.event.InternalFrameListener;
 //Kasnije napravi neku LayoutKlasu koja na razlicite nacine
 //rasporedjuje i resizuje framove
 
-@SuppressWarnings("serial")
 public class DefaultForm extends JInternalFrame
 {
+	private static final long serialVersionUID = -7657600321157734995L;
+
 	public DefaultForm(String name)
 	{
 		super(name, true, true, true, true);

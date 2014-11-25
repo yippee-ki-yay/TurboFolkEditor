@@ -56,10 +56,9 @@ public class MainFrame extends JFrame
 		//get that d
 		Dimension d = tool.getScreenSize();
 		
-		setSize(800, 650);
+		setSize(850, 600);
 		setTitle("Super senzetivni, turbo folk ekstra editor");
 		setLocationRelativeTo(null);
-		//setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		
 		ImageIcon iconImg = new ImageIcon("img/icon.png");
 		setIconImage(iconImg.getImage());

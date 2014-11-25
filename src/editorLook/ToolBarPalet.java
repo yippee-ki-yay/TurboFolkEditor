@@ -8,8 +8,13 @@ public class ToolBarPalet extends JToolBar
 
 	public ToolBarPalet()
 	{
+		
+		super(VERTICAL);
 		setFloatable(true);
 		
 		
+		add(MainFrame.getInstance().getActionManager().getCircleAction());
+		add(MainFrame.getInstance().getActionManager().getTriangleAction());
+		add(MainFrame.getInstance().getActionManager().getSquareAction());
 	}
 }

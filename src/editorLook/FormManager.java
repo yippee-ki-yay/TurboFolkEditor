@@ -4,7 +4,6 @@ package editorLook;
 
 
 import java.awt.Dimension;
-import java.awt.LayoutManager;
 import java.beans.PropertyVetoException;
 
 import javax.swing.JDesktopPane;
