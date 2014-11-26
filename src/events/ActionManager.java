@@ -15,6 +15,15 @@ public class ActionManager
 	private ExportAction exportAction = new ExportAction();
 	private SaveAction saveAction = new SaveAction();
 	private AboutAction aboutAction = new AboutAction();
+	private ExitAction exitAction = new ExitAction();
+
+	public ExitAction getExitAction() {
+		return exitAction;
+	}
+
+	public void setExitAction(ExitAction exitAction) {
+		this.exitAction = exitAction;
+	}
 
 	private CascadeLayoutAction cascadeLayout = new CascadeLayoutAction();
 	private HorizontalLayoutAction horizontalLayout =

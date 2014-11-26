@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
 import editorLook.AboutDialog;
-import editorLook.MainFrame;
 
 
 

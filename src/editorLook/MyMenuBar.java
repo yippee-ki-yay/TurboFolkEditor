@@ -32,8 +32,7 @@ public class MyMenuBar extends JMenuBar{
 		file.add(MainFrame.getInstance().getActionManager().getSaveAction());
 		file.add(MainFrame.getInstance().getActionManager().getImportAction());
 		file.add(MainFrame.getInstance().getActionManager().getExportAction());
-
-		//JMenuItem miExit =new JMenuItem("Exit");
+		file.add(MainFrame.getInstance().getActionManager().getExitAction());
 
 		file.addSeparator();
 		
@@ -56,6 +55,7 @@ public class MyMenuBar extends JMenuBar{
 		view.add(MainFrame.getInstance().getActionManager().getHorizontalLayout());
 		view.add(MainFrame.getInstance().getActionManager().getVerticalLayout());
 		
+		//Help
 		help.add(MainFrame.getInstance().getActionManager().getAboutAction());
 			
 		add(file);
