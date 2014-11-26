@@ -7,13 +7,17 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
+import editorLook.AboutDialog;
+import editorLook.MainFrame;
+
 
 
 public class AboutAction extends AbstractAction
 {
-
 	private static final long serialVersionUID = -7449805751468726631L;
 
+	private AboutDialog aboutDialog = null;
+	
 	public AboutAction()
 	{
 		putValue(MNEMONIC_KEY, KeyEvent.VK_H);
@@ -26,9 +30,13 @@ public class AboutAction extends AbstractAction
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-			
-	
+	public void actionPerformed(ActionEvent arg0) 
+	{
+		if(aboutDialog == null)
+		{
+			aboutDialog = new AboutDialog();
+		}
+		aboutDialog.setVisible(true);
 		
 	}
 
