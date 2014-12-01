@@ -10,24 +10,37 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+
+import model.TreeModel;
+
+
+import actions.ActionManager;
 
 import com.alee.laf.WebLookAndFeel;
 
-import events.ActionManager;
+import frame.FrameManager;
+import gui.MyMenuBar;
+import gui.MyToolBar;
+import gui.StatusBar;
+import gui.ToolBarPalet;
+import gui.WorkspaceTree;
 
 @SuppressWarnings({ "serial", "unused" })
 public class MainFrame extends JFrame
 {
 	
+//	public static int frame_id = 0;
 	private static MainFrame instance = null;
 	
 	private MyMenuBar menu;
 	private MyToolBar toolbar;
-	private FormManager desktopManager;
+	private FrameManager desktopManager;
 	private ActionManager actionManager;
-	private TreeView tree;
 	private ToolBarPalet toolPalet;
+	private WorkspaceTree workspaceTree;
+	private TreeModel treeModel;
 	
 
 	public static MainFrame getInstance()
@@ -74,9 +87,14 @@ public class MainFrame extends JFrame
 	
 	private void populateWindow()
 	{	
-		tree = new TreeView();
 		
-		desktopManager = new FormManager();
+		treeModel = new TreeModel();
+		workspaceTree = new WorkspaceTree();
+		workspaceTree.setModel(treeModel);
+		
+		JScrollPane scrollPane = new JScrollPane(workspaceTree);
+		
+		desktopManager = new FrameManager();
 		
 		actionManager = new ActionManager();
 		
@@ -87,9 +105,9 @@ public class MainFrame extends JFrame
 		toolPalet = new ToolBarPalet();
 		add(toolPalet, BorderLayout.EAST);
 		
-		add(tree, BorderLayout.WEST);
+		//add(tree, BorderLayout.WEST);
 		
-		JSplitPane sp1=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,tree,desktopManager);
+		JSplitPane sp1=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,desktopManager);
 		sp1.setDividerLocation(170);
 		
 		
@@ -105,6 +123,14 @@ public class MainFrame extends JFrame
 	}
 	
 	
+	public WorkspaceTree getWorkspaceTree() {
+		return workspaceTree;
+	}
+
+	public void setWorkspaceTree(WorkspaceTree workspaceTree) {
+		this.workspaceTree = workspaceTree;
+	}
+
 	public ActionManager getActionManager() {
 		return actionManager;
 	}
@@ -113,19 +139,12 @@ public class MainFrame extends JFrame
 		this.actionManager = actionManager;
 	}
 	
-	public TreeView getTree() {
-		return tree;
-	}
 
-	public void setTree(TreeView tree) {
-		this.tree = tree;
-	}
-
-	public FormManager getDesktopManager() {
+	public FrameManager getDesktopManager() {
 		return desktopManager;
 	}
 
-	public void setDesktopManager(FormManager desktopManager) {
+	public void setDesktopManager(FrameManager desktopManager) {
 		this.desktopManager = desktopManager;
 	}
 	
