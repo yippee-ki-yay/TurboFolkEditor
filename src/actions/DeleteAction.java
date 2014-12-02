@@ -8,7 +8,8 @@ import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 
-import model.Project;
+import model.FrameNode;
+import model.ProjectNode;
 import editorLook.MainFrame;
 
 @SuppressWarnings("serial")
@@ -21,28 +22,33 @@ public class DeleteAction extends AbstractAction
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		
-		putValue(SHORT_DESCRIPTION, "Delte Frame");
+		putValue(SHORT_DESCRIPTION, "Delete");
 		putValue(SMALL_ICON, new ImageIcon("img/delete.png"));
-		putValue(NAME, "Delete Frame");
+		putValue(NAME, "Delete");
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-			
 		
-		//Ako je samo jedan frejm selektovan
-       int id =  MainFrame.getInstance().getDesktopManager().deleteSelected();
-        
-        //selektovan frame nam vrati svoj id
-		
-		
+		//dobijemo kod node je selektovan
 		Object o = MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
 		
-		if(o instanceof Project)
+		//ako je projekat selektovan izbrisi sve nodove i framove datog projekta
+		if(o instanceof ProjectNode)
 		{
-			MainFrame.getInstance().getWorkspaceTree().deleteProject((Project)o);
+			MainFrame.getInstance().getDesktopManager().removeFrameViews(((ProjectNode)o).getFrames());
+			MainFrame.getInstance().getWorkspaceTree().deleteProject((ProjectNode)o);
 			
 			SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
+		}
+		else if(o instanceof FrameNode)
+		{
+			MainFrame.getInstance().getDesktopManager().deleteSelected();
+			
+			
+			ProjectNode p = (ProjectNode) ((FrameNode)o).getParent();
+    		p.deleteFrame(((FrameNode)o));
+    		SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
 		}
 	}
 

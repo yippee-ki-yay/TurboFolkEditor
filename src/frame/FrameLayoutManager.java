@@ -34,7 +34,7 @@ public class FrameLayoutManager {
 	 * 
 	 * @param form is the internal frame we are adding
 	 */
-	public void add(DefaultFrame form)
+	public void add(FrameView form)
 	{
 		if(currState == Layout.CASCADE)
 		{
@@ -129,7 +129,7 @@ public class FrameLayoutManager {
 		}
 	}
 	
-	private void addHorizontalForm(DefaultFrame form)
+	private void addHorizontalForm(FrameView form)
 	{
          currState = Layout.HORIZONTAL;
 		
@@ -155,7 +155,7 @@ public class FrameLayoutManager {
 		currX += desktopPane.getWidth()/nFrames+1;
 	}
 	
-	private void addVerticalForm(DefaultFrame form)
+	private void addVerticalForm(FrameView form)
 	{
         currState = Layout.VERTICAL;
 		

@@ -3,15 +3,14 @@ package frame;
 
 
 
-import java.awt.Dimension;
 import java.beans.PropertyVetoException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 
-import model.Frame;
-import editorLook.MainFrame;
+import model.FrameNode;
 
 
 public class FrameManager extends JDesktopPane
@@ -19,20 +18,19 @@ public class FrameManager extends JDesktopPane
 	private static final long serialVersionUID = 4178080838523837768L;
 	
 	
-	HashMap<Integer, DefaultFrame> frames;
+	HashMap<Integer, FrameView> frames;
 	
 	FrameLayoutManager layout;
 
 	public FrameManager()
 	{
-		frames = new HashMap<Integer, DefaultFrame>();
-		setMinimumSize(new Dimension((int) MainFrame.getInstance().getSize().getWidth() - 350, 1));
+		frames = new HashMap<Integer, FrameView>();
 		layout = new FrameLayoutManager(this);
 	}
 	
-	public void addFrame(String title, int count) 
+	public void addFrame(String title, int count, FrameNode frameNode) 
 	{
-		DefaultFrame newForm = new DefaultFrame(title, count);
+		FrameView newForm = new FrameView(title, count, frameNode);
 		frames.put(count, newForm);
 		
 		layout.add(newForm);
@@ -89,7 +87,7 @@ public class FrameManager extends JDesktopPane
 	
 	public void showFrame(int idx)
 	{
-		DefaultFrame f = frames.get(idx);
+		FrameView f = frames.get(idx);
 		
 		if(f != null)
 		{
@@ -97,24 +95,14 @@ public class FrameManager extends JDesktopPane
 		}
 	}
 	
-	
-	public void selectFrame(String frameName)
+	public void removeFrameViews(ArrayList<FrameNode> frame_nodes)
 	{
-		JInternalFrame frames[] = getAllFrames();
-			
-		for(int i = 0; i < frames.length; i++)
+		for(FrameNode f : frame_nodes)
 		{
-			if(frames[i].getTitle().equals(frameName))
-			{
-				try {
-					frames[i].setSelected(true);
-				} catch (PropertyVetoException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
+			frames.get(f.getId()).dispose();
 		}
 	}
+	
 	
 	public void selectFrame(int id)
 	{
@@ -142,18 +130,13 @@ public class FrameManager extends JDesktopPane
 	}
 	
 	
-	public int deleteSelected()
+	public void deleteSelected()
 	{
-		DefaultFrame frame = (DefaultFrame) getSelectedFrame();
-		
-		int id = frame.getId();
-		
 		if(isSomeoneSelected())	
 		{
 			getSelectedFrame().dispose();
 		}
 		
-		return id;
 	}
 	
 	

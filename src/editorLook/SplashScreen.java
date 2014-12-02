@@ -8,7 +8,6 @@ import javax.swing.JWindow;
 @SuppressWarnings("serial")
 public class SplashScreen extends JWindow {
 
-	
 	JLabel imgLabel;
 	
 	public SplashScreen()
@@ -19,7 +18,6 @@ public class SplashScreen extends JWindow {
 		Icon icon = new ImageIcon("img/ftn-logo.png");
 		imgLabel.setIcon(icon);
 		
-		setSize(400, 400);
 		setVisible(true);
 		
 		add(imgLabel);

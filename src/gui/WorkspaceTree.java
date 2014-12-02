@@ -10,10 +10,9 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
-import model.Frame;
-import model.Project;
-import model.Workspace;
-import model.TreeModel;
+import model.FrameNode;
+import model.ProjectNode;
+import model.WorkspaceTreeModel;
 import editorLook.MainFrame;
 
 public class WorkspaceTree extends JTree implements TreeSelectionListener
@@ -34,9 +33,9 @@ public class WorkspaceTree extends JTree implements TreeSelectionListener
             	 if(selPath != null){
             	 Object o = selPath.getLastPathComponent();
             	 if(o == null)return;
-            	 if(o instanceof Frame)
+            	 if(o instanceof FrameNode)
             	 {
-                  	 MainFrame.getInstance().getDesktopManager().showFrame(((Frame) o).getId());
+                  	 MainFrame.getInstance().getDesktopManager().showFrame(((FrameNode) o).getId());
             	 }}
          }
      };
@@ -44,14 +43,14 @@ public class WorkspaceTree extends JTree implements TreeSelectionListener
 	 
 	}
 	
-	public void addProject(Project project)
+	public void addProject(ProjectNode projectNode)
 	{
-		((TreeModel)getModel()).addProject(project);
+		((WorkspaceTreeModel)getModel()).addProject(projectNode);
 		SwingUtilities.updateComponentTreeUI(this);
 	}
 	
-	public void deleteProject(Project project) {
-		((TreeModel)getModel()).deleteProject(project);
+	public void deleteProject(ProjectNode projectNode) {
+		((WorkspaceTreeModel)getModel()).deleteProject(projectNode);
 	}
 
 	@Override
@@ -60,35 +59,23 @@ public class WorkspaceTree extends JTree implements TreeSelectionListener
         
 	    if(o != null)
 	    {
-	    	if(o instanceof Frame)
+	    	if(o instanceof FrameNode)
 	    	{
 	    		MainFrame.getInstance().getDesktopManager().
-	    		                              selectFrame(((Frame) o).getId());
+	    		                              selectFrame(((FrameNode) o).getId());
 	    	}
 	    }	
 	}
 	
-	public void selectNode(int id)
+	public void selectNode(FrameNode frameNode)
 	{
+		
+		TreeNode[] arr = ((WorkspaceTreeModel)getModel()).getPathToRoot(frameNode);
 	    
-		
-		//TODO YOLO
-		/*Object arr[] = new Object[3];
-		
-		Frame f = Project.selectFrame(id);
-		
-		arr[0] = TreeModel.workspace;
-		arr[1] = Workspace.selectProject(f.getParentId());
-		arr[2] = f;
-		
 		TreePath path = new TreePath(arr);
+		setSelectionPath(path);
 		
-		//((TreeModel)getModel()).getPathToRoot(f);
-		
-		//Project node = (Project)Workspace.selectProject(id); //selektuj prvi elem
-		
-		
-		setSelectionPath(path);*/
 	}
+	
 	
 }

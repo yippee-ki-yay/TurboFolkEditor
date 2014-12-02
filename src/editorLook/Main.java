@@ -22,6 +22,7 @@ public class Main {
 				
 				splash = new SplashScreen();
 				
+				//posle 1.5s iskljuci splash i ukljuci app
 				Timer timer = new Timer(1500, new ActionListener() {
 					
 					@Override

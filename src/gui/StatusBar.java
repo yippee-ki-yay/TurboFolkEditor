@@ -1,18 +1,11 @@
 package gui;
 
-import java.awt.BorderLayout;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
+import java.awt.GridLayout;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
-
-/*
- * Nemoj nikad na kraju da add-ujes sve komponente
- * izgubio si pola sata jer Aligment i glue ne radi
- * ako ih ne dodajes pre poziva tih metoda
- */
 
 @SuppressWarnings("serial")
 public class StatusBar extends JPanel
@@ -26,31 +19,31 @@ public class StatusBar extends JPanel
 	
 	public StatusBar()
 	{
-		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		setLayout(new GridLayout(1, 5));
 		setBorder(new BevelBorder(BevelBorder.LOWERED));
 		
-		welcomeMsg  = new JLabel("Editor", JLabel.LEADING);
+		welcomeMsg  = new JLabel("Status", JLabel.CENTER);
+		welcomeMsg.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		add(welcomeMsg);
 		
-		add(Box.createHorizontalGlue());
 		
-		Msg1 = new JLabel("Editor");
+		Msg1 = new JLabel("Status", JLabel.CENTER);
+		Msg1.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		add(Msg1);
 		
-		add(Box.createHorizontalGlue());
 		
-		Msg2 = new JLabel("Editor");
+		Msg2 = new JLabel("Status", JLabel.CENTER);
+		Msg2.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		add(Msg2);
-		
-		add(Box.createHorizontalGlue());
-		
-	    stageMsg    = new JLabel("Editor");
-	    add(stageMsg);
 	
-	    add(Box.createHorizontalGlue());
+		
+	    stageMsg    = new JLabel("Status", JLabel.CENTER);
+	    stageMsg.setBorder(new BevelBorder(BevelBorder.LOWERED));
+	    add(stageMsg);
+
 	    
-	    progressMsg = new JLabel("Editor");
-	    
+	    progressMsg = new JLabel("Status", JLabel.CENTER);
+	    progressMsg.setBorder(new BevelBorder(BevelBorder.LOWERED));
 	    add(progressMsg);
 	}
 }

@@ -1,19 +1,16 @@
 package editorLook;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 
-import model.TreeModel;
+import model.WorkspaceTreeModel;
 
 
 import actions.ActionManager;
@@ -27,11 +24,12 @@ import gui.StatusBar;
 import gui.ToolBarPalet;
 import gui.WorkspaceTree;
 
-@SuppressWarnings({ "serial", "unused" })
+@SuppressWarnings("serial")
+
 public class MainFrame extends JFrame
 {
 	
-//	public static int frame_id = 0;
+	public static int frame_id = 0;
 	private static MainFrame instance = null;
 	
 	private MyMenuBar menu;
@@ -40,7 +38,7 @@ public class MainFrame extends JFrame
 	private ActionManager actionManager;
 	private ToolBarPalet toolPalet;
 	private WorkspaceTree workspaceTree;
-	private TreeModel treeModel;
+	private WorkspaceTreeModel workspaceTreeModel;
 	
 
 	public static MainFrame getInstance()
@@ -63,14 +61,9 @@ public class MainFrame extends JFrame
 	}
 	
 	private void createWindow()
-	{
-		Toolkit tool = Toolkit.getDefaultToolkit();
-		
-		//get that d
-		Dimension d = tool.getScreenSize();
-		
+	{	
 		setSize(850, 600);
-		setTitle("Graficki editor");
+		setTitle("Graphics editor");
 		setLocationRelativeTo(null);
 		
 		ImageIcon iconImg = new ImageIcon("img/icon.png");
@@ -88,9 +81,9 @@ public class MainFrame extends JFrame
 	private void populateWindow()
 	{	
 		
-		treeModel = new TreeModel();
+		workspaceTreeModel = new WorkspaceTreeModel();
 		workspaceTree = new WorkspaceTree();
-		workspaceTree.setModel(treeModel);
+		workspaceTree.setModel(workspaceTreeModel);
 		
 		JScrollPane scrollPane = new JScrollPane(workspaceTree);
 		
@@ -105,7 +98,6 @@ public class MainFrame extends JFrame
 		toolPalet = new ToolBarPalet();
 		add(toolPalet, BorderLayout.EAST);
 		
-		//add(tree, BorderLayout.WEST);
 		
 		JSplitPane sp1=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,desktopManager);
 		sp1.setDividerLocation(170);
@@ -150,7 +142,7 @@ public class MainFrame extends JFrame
 	
 	
 	
-	/*
+	/**
 	 * Ova klasa odgovara na eventove sa glavnog prozora
 	 * u ovom slucaju pred zatvaranje izbacuje dialog
 	 */
@@ -160,7 +152,7 @@ public class MainFrame extends JFrame
 		public void windowClosing(WindowEvent e)
 		{
 			int response = JOptionPane.showConfirmDialog(MainFrame.this, "Are you sure you want to quit?",
-					"Don't leave me :(", 
+					"Exit", 
 					JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			
 			
