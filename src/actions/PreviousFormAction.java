@@ -17,7 +17,6 @@ public class PreviousFormAction extends AbstractAction
 
 	public  PreviousFormAction() {
 	
-		putValue(MNEMONIC_KEY, KeyEvent.VK_LEFT);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_LEFT, ActionEvent.CTRL_MASK));
 		

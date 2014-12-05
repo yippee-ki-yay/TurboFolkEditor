@@ -15,7 +15,6 @@ public class VerticalLayoutAction extends AbstractAction
 
 	public VerticalLayoutAction()
 	{
-		putValue(MNEMONIC_KEY, KeyEvent.VK_L);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_L, ActionEvent.CTRL_MASK));
 		
@@ -26,9 +25,9 @@ public class VerticalLayoutAction extends AbstractAction
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-			
-		MainFrame.getInstance().getDesktopManager().getLayoutManager().
-		                          ToVertical();
+		if(MainFrame.getInstance().getDesktopManager().isSomeoneAlive())	
+		   MainFrame.getInstance().getDesktopManager().getLayoutManager().
+		                                               ToVertical();
 		
 	}
 

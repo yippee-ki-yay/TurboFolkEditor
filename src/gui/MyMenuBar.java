@@ -27,6 +27,12 @@ public class MyMenuBar extends JMenuBar{
 	    JMenu select = new JMenu("Select");
 	    JMenu help = new JMenu("Help");
 	    JMenu view = new JMenu("View");
+	    
+	    file.setMnemonic('F');
+	    edit.setMnemonic('E');
+	    select.setMnemonic('S');
+	    help.setMnemonic('H');
+	    view.setMnemonic('V');
 
 		//File stavka
 		file.add(MainFrame.getInstance().getActionManager().getProjectAction());

@@ -68,8 +68,7 @@ public class MainFrame extends JFrame
 		
 		ImageIcon iconImg = new ImageIcon("img/icon.png");
 		setIconImage(iconImg.getImage());
-		this.addWindowListener(new WindowHandler());  //dodao svoj event listener za sam prozor
-		
+		this.addWindowListener(new WindowHandler()); 	
 		
 		try {
 			WebLookAndFeel.install();
@@ -94,10 +93,8 @@ public class MainFrame extends JFrame
 		menu = new MyMenuBar();
 		setJMenuBar(menu);
 		
-		
 		toolPalet = new ToolBarPalet();
 		add(toolPalet, BorderLayout.EAST);
-		
 		
 		JSplitPane sp1=new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,scrollPane,desktopManager);
 		sp1.setDividerLocation(170);

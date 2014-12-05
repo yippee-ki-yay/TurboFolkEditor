@@ -3,6 +3,7 @@ package gui;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.Action;
 import javax.swing.JTree;
 import javax.swing.SwingUtilities;
 import javax.swing.event.TreeSelectionEvent;
@@ -63,8 +64,32 @@ public class WorkspaceTree extends JTree implements TreeSelectionListener
 	    	{
 	    		MainFrame.getInstance().getDesktopManager().
 	    		                              selectFrame(((FrameNode) o).getId());
+	    		MainFrame.getInstance().getActionManager().getFormAction().setEnabled(false);
+	    		MainFrame.getInstance().getActionManager().getFormAction().
+                   putValue(Action.SHORT_DESCRIPTION, "Select a project");
+	    		MainFrame.getInstance().getActionManager().getDeleteAction().
+	    		                       putValue(Action.SHORT_DESCRIPTION, "Delete frame");
+	    		
 	    	}
-	    }	
+	    	else if(o instanceof ProjectNode)
+	    	{
+	    		MainFrame.getInstance().getActionManager().getFormAction().setEnabled(true);
+	    		MainFrame.getInstance().getActionManager().getFormAction().
+   		                                   putValue(Action.SHORT_DESCRIPTION, "Add frame");
+	    		MainFrame.getInstance().getActionManager().getDeleteAction().
+                putValue(Action.SHORT_DESCRIPTION, "Delete project");
+	    	}
+	    	else
+	    	{
+	    		MainFrame.getInstance().getActionManager().getFormAction().setEnabled(false);
+	    		MainFrame.getInstance().getActionManager().getFormAction().
+                   putValue(Action.SHORT_DESCRIPTION, "Select a project");
+	    	}
+	    		 
+	    	
+	    }
+	 
+	   
 	}
 	
 	public void selectNode(FrameNode frameNode)
@@ -75,6 +100,14 @@ public class WorkspaceTree extends JTree implements TreeSelectionListener
 		TreePath path = new TreePath(arr);
 		setSelectionPath(path);
 		
+	}
+	
+	public void expandNode(FrameNode frameNode)
+	{
+	    TreeNode[] arr = ((WorkspaceTreeModel)getModel()).getPathToRoot(frameNode);
+	    
+		TreePath path = new TreePath(arr);
+		expandPath(path);
 	}
 	
 	

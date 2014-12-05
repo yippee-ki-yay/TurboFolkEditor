@@ -14,7 +14,6 @@ public class SaveAction extends AbstractAction
 
 	public SaveAction()
 	{
-		putValue(MNEMONIC_KEY, KeyEvent.VK_S);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_S, ActionEvent.CTRL_MASK));
 		

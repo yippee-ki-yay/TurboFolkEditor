@@ -7,7 +7,6 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
-//TODO mnemonics
 
 public class DrawSquareAction extends AbstractAction
 {
@@ -16,13 +15,12 @@ public class DrawSquareAction extends AbstractAction
 
 	public DrawSquareAction()
 	{
-		//putValue(MNEMONIC_KEY, KeyEvent.VK_W);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_S, ActionEvent.ALT_MASK));
 		
-		putValue(SHORT_DESCRIPTION, "Draws square");
+		putValue(SHORT_DESCRIPTION, "Draw square");
 		putValue(SMALL_ICON, new ImageIcon("img/square.png"));
-		//putValue(NAME, "Maximize Frame");
+		putValue(NAME, "Draw square");
 	}
 	
 	@Override

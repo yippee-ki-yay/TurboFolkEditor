@@ -5,11 +5,6 @@ import java.awt.Dimension;
 import javax.swing.JInternalFrame;
 
 
-
-//TODO updejtuj frejmove ako su neki obrisani
-//TODO kad se menja velicina?
-//TODO kod klasa dodavanja koristis u vise metoda isti kod
-
 public class FrameLayoutManager {
 
 	enum Layout {CASCADE , VERTICAL, HORIZONTAL};
@@ -20,13 +15,16 @@ public class FrameLayoutManager {
 	
 	int currX, currY, dX, dY;
 	
+	boolean goingLeft = false;
+	boolean goingRight = true;
+	
 	public FrameLayoutManager(FrameManager manager)
 	{
 		currState = Layout.CASCADE;
 		desktopPane = manager;
 		
 		dX = 30; dY = 30;
-		currX = 20; currY = 20;
+		currX = 0; currY = 0;
 	}
 	
 	/**
@@ -54,6 +52,7 @@ public class FrameLayoutManager {
 	
 	public void ToCascade()
 	{
+		
 		currState = Layout.CASCADE;
 		
         JInternalFrame frames[] = desktopPane.getAllFrames();
@@ -62,7 +61,7 @@ public class FrameLayoutManager {
 		
 		currX = 20; currY = 20;
 		
-		for(int i = 0; i < nFrames;++i)
+		for(int i = nFrames-1; i >= 0;--i)
 		{
 			frames[i].setSize(200, 200);
 			addCascadeForm(frames[i]);
@@ -71,6 +70,7 @@ public class FrameLayoutManager {
 	
 	public void ToVertical()
 	{
+		
 		currState = Layout.VERTICAL;
 		
 		JInternalFrame frames[] = desktopPane.getAllFrames();
@@ -79,18 +79,19 @@ public class FrameLayoutManager {
 		
 		int currY = 0;
 		
-		for(JInternalFrame frame: frames)
+		for(int i = nFrames-1; i >= 0;--i)
 		{
-			frame.setSize(desktopPane.getWidth(),
+			frames[i].setSize(desktopPane.getWidth(),
 					desktopPane.getHeight()/nFrames);
 			
-			frame.setLocation(0, currY);
+			frames[i].setLocation(0, currY);
 			currY += desktopPane.getHeight()/nFrames;
 		}
 	}
 	
 	public void ToHorizontal()
 	{
+		
 		currState = Layout.HORIZONTAL;
 		
 		JInternalFrame frames[] = desktopPane.getAllFrames();
@@ -99,33 +100,59 @@ public class FrameLayoutManager {
 		
 		int currX = 0;
 		
-		for(JInternalFrame frame: frames)
+		for(int i = nFrames-1; i >= 0;--i)
 		{
-			frame.setSize(desktopPane.getWidth()/ nFrames,
+			frames[i].setSize(desktopPane.getWidth()/ nFrames,
 					desktopPane.getHeight());
 			
-			frame.setLocation(currX, 0);
+			frames[i].setLocation(currX, 0);
 			currX += desktopPane.getWidth()/nFrames;
 		}
 	}
 	
 	private void addCascadeForm(JInternalFrame form)
-	{
-		form.setLocation(currX, currY);
-		currX = currX + dX;currY = currY + dY;
-		
+	{		
 		desktopSize = desktopPane.getSize();
+		form.setLocation(currX, currY);
+			
+		//udarili smo desnu ivicu
+		if(form.getWidth() + form.getX()-50 >= desktopSize.width)
+		{
+			goingRight = false; goingLeft = true;
+			currX = desktopSize.width-200;currY = -20;
+		}
 		
-		//ako smo dotakli granicu dole naseg desktopa vrati gore
+		//udarili smo levu ivicu
+		if(form.getX() <= 0)
+		{
+			goingRight = true; goingLeft = false;
+			currY = 0;
+		}
+		
+		if(goingLeft == true)
+		{
+		
+			currX -= 20;  currY += 20;
+		}
+		
+		if(goingRight == true)
+		{
+			currX += 20;  currY += 20;
+		}
+		
+		//udarili smo donju ivicu
 		if(form.getHeight() + form.getY() >= desktopSize.height)
 		{
-			currX -= 100;
-			currY = 30;
-		}//stavi ga u centar ako spo otisli predaleko desno
-		else if(form.getWidth() + form.getX()-100 >= desktopSize.width)
-		{
-			form.setLocation(desktopSize.width/2 - form.getWidth()/2,
-					desktopSize.height/2 - form.getHeight()/2);
+			if(goingRight == true)
+			{
+				currY = 0;currX -= 100;
+			}
+			else if(goingLeft == true)
+			{
+				currY = 0;currX += 100;	
+			}
+				
+			
 		}
 	}
 	

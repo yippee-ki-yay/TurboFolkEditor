@@ -16,7 +16,6 @@ public class MinimizeAction extends AbstractAction
 
 	public MinimizeAction()
 	{
-		putValue(MNEMONIC_KEY, KeyEvent.VK_M);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_M, ActionEvent.CTRL_MASK));
 		

@@ -10,13 +10,13 @@ import javax.swing.KeyStroke;
 import editorLook.MainFrame;
 
 
-@SuppressWarnings("serial")
+
 public class NextFormAction extends AbstractAction
 {
+	private static final long serialVersionUID = -3415478176137320845L;
 
 	public NextFormAction()
 	{
-		putValue(MNEMONIC_KEY, KeyEvent.VK_RIGHT);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_RIGHT, ActionEvent.CTRL_MASK));
 		

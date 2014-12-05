@@ -16,12 +16,11 @@ public class MaximizeAction extends AbstractAction
 
 	public MaximizeAction()
 	{
-		putValue(MNEMONIC_KEY, KeyEvent.VK_W);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_W, ActionEvent.CTRL_MASK));
 		
 		putValue(SHORT_DESCRIPTION, "Maximize Frame");
-		putValue(SMALL_ICON, new ImageIcon("img/maximize.jpg"));
+		putValue(SMALL_ICON, new ImageIcon("img/maximize.png"));
 		putValue(NAME, "Maximize Frame");
 	}
 	

@@ -7,7 +7,6 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
-//TODO mnemonics
 
 public class DrawTriangleAction extends AbstractAction
 {
@@ -16,13 +15,12 @@ public class DrawTriangleAction extends AbstractAction
 
 	public DrawTriangleAction()
 	{
-		//putValue(MNEMONIC_KEY, KeyEvent.VK_W);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_T, ActionEvent.ALT_MASK));
 		
-		putValue(SHORT_DESCRIPTION, "Draws triangle");
+		putValue(SHORT_DESCRIPTION, "Draw triangle");
 		putValue(SMALL_ICON, new ImageIcon("img/triangle.png"));
-		//putValue(NAME, "Maximize Frame");
+		putValue(NAME, "Draw triangle");
 	}
 	
 	@Override

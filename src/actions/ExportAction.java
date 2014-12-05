@@ -14,7 +14,6 @@ public class ExportAction extends AbstractAction
 
 	public ExportAction()
 	{
-		putValue(MNEMONIC_KEY, KeyEvent.VK_E);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		

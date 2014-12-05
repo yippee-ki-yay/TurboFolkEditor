@@ -1,6 +1,7 @@
 package frame;
 
 
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.WindowConstants;
 import javax.swing.event.InternalFrameAdapter;
@@ -23,8 +24,8 @@ public class FrameView extends JInternalFrame
 		setSize(200, 200);
 		setVisible(true);
 		this.frameNode = frameNode;
-		setDefaultCloseOperation(
-                WindowConstants.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
+		setFrameIcon(new ImageIcon("img/frame_node.png"));
 		
 		myId = id;
 		

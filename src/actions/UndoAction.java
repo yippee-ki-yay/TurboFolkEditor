@@ -14,7 +14,6 @@ public class UndoAction extends AbstractAction
 
 	public UndoAction()
 	{
-		putValue(MNEMONIC_KEY, KeyEvent.VK_Z);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
 		

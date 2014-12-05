@@ -16,7 +16,6 @@ public class CascadeLayoutAction extends AbstractAction
 
 	public CascadeLayoutAction()
 	{
-		putValue(MNEMONIC_KEY, KeyEvent.VK_J);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_J, ActionEvent.CTRL_MASK));
 		
@@ -27,8 +26,9 @@ public class CascadeLayoutAction extends AbstractAction
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-			
-	MainFrame.getInstance().getDesktopManager().getLayoutManager().ToCascade();
+	
+		if(MainFrame.getInstance().getDesktopManager().isSomeoneAlive())
+		  MainFrame.getInstance().getDesktopManager().getLayoutManager().ToCascade();
 		
 	}
 

@@ -7,7 +7,6 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
-//TODO mnemonics
 
 public class DrawCircleAction extends AbstractAction
 {
@@ -15,13 +14,12 @@ public class DrawCircleAction extends AbstractAction
 
 	public DrawCircleAction()
 	{
-		//putValue(MNEMONIC_KEY, KeyEvent.VK_W);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_C, ActionEvent.ALT_MASK));
 		
-		putValue(SHORT_DESCRIPTION, "Draws circle");
+		putValue(SHORT_DESCRIPTION, "Draw circle");
 		putValue(SMALL_ICON, new ImageIcon("img/circle.png"));
-		//putValue(NAME, "Maximize Frame");
+		putValue(NAME, "Draw circle");
 	}
 	
 	@Override

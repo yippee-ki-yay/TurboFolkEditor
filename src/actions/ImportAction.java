@@ -14,7 +14,6 @@ public class ImportAction extends AbstractAction
 
 	public ImportAction()
 	{
-		putValue(MNEMONIC_KEY, KeyEvent.VK_I);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_I, ActionEvent.CTRL_MASK));
 		

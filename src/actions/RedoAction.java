@@ -15,7 +15,6 @@ public class RedoAction extends AbstractAction
 
 	public RedoAction()
 	{
-		putValue(MNEMONIC_KEY, KeyEvent.VK_U);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_U, ActionEvent.CTRL_MASK));
 		

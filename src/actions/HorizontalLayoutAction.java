@@ -16,7 +16,6 @@ public class HorizontalLayoutAction extends AbstractAction
 
 	public HorizontalLayoutAction()
 	{
-		putValue(MNEMONIC_KEY, KeyEvent.VK_K);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_K, ActionEvent.CTRL_MASK));
 		
@@ -27,9 +26,10 @@ public class HorizontalLayoutAction extends AbstractAction
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-			
-	MainFrame.getInstance().getDesktopManager().getLayoutManager()
-	                              .ToHorizontal();
+		
+		if(MainFrame.getInstance().getDesktopManager().isSomeoneAlive())
+	       MainFrame.getInstance().getDesktopManager().getLayoutManager()
+	                                                  .ToHorizontal();
 		
 	}
 

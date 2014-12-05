@@ -18,7 +18,6 @@ public class AboutAction extends AbstractAction
 	
 	public AboutAction()
 	{
-		putValue(MNEMONIC_KEY, KeyEvent.VK_H);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_H, ActionEvent.CTRL_MASK));
 		

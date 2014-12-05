@@ -114,6 +114,14 @@ public class FrameManager extends JDesktopPane
 		}
 	}
 	
+	public boolean isSomeoneAlive()
+	{
+		if(getAllFrames().length > 0)
+			return true;
+		
+		return false;
+	}
+	
 	public boolean isSomeoneSelected()
 	{
 		JInternalFrame frames[] = getAllFrames();

@@ -18,7 +18,6 @@ public class DeleteAction extends AbstractAction
 
 	public DeleteAction()
 	{
-		putValue(MNEMONIC_KEY, KeyEvent.VK_D);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(
 		        KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		
@@ -30,7 +29,7 @@ public class DeleteAction extends AbstractAction
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
-		//dobijemo kod node je selektovan
+		//dobijemo koji node je selektovan
 		Object o = MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
 		
 		//ako je projekat selektovan izbrisi sve nodove i framove datog projekta
@@ -38,8 +37,10 @@ public class DeleteAction extends AbstractAction
 		{
 			MainFrame.getInstance().getDesktopManager().removeFrameViews(((ProjectNode)o).getFrames());
 			MainFrame.getInstance().getWorkspaceTree().deleteProject((ProjectNode)o);
+			MainFrame.getInstance().getActionManager().getFormAction().setEnabled(false);
 			
 			SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
+			
 		}
 		else if(o instanceof FrameNode)
 		{
@@ -49,6 +50,7 @@ public class DeleteAction extends AbstractAction
 			ProjectNode p = (ProjectNode) ((FrameNode)o).getParent();
     		p.deleteFrame(((FrameNode)o));
     		SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
+    		
 		}
 	}
 
