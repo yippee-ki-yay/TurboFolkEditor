@@ -70,11 +70,11 @@ public class MainFrame extends JFrame
 		setIconImage(iconImg.getImage());
 		this.addWindowListener(new WindowHandler()); 	
 		
-		try {
+		/*try {
 			WebLookAndFeel.install();
 		} catch (Exception e) {
 		    e.printStackTrace();
-		}
+		}*/
 	}
 	
 	private void populateWindow()

@@ -12,6 +12,8 @@ public class FrameNode implements TreeNode
 	int parentId;
 	ProjectNode parent;
 	
+	FrameModel model = new FrameModel();
+	
 	public int getParentId() {
 		return parentId;
 	}
@@ -85,6 +87,15 @@ public class FrameNode implements TreeNode
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public FrameModel getModel() {
+		return model;
+	}
+
+
+	public void setModel(FrameModel model) {
+		this.model = model;
 	}
 
 }
