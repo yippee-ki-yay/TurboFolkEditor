@@ -2,6 +2,8 @@ package model;
 
 
 
+import java.util.ArrayList;
+
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 
@@ -27,14 +29,13 @@ public class WorkspaceTreeModel extends DefaultTreeModel {
 	@Override
 	public TreeNode[] getPathToRoot(TreeNode node)
 	{
-		TreeNode[] nodes = new TreeNode[3];
+		ArrayList<TreeNode> nodes = new ArrayList<TreeNode>();
 		
-		nodes[2] = node;
+		nodes.add(node.getParent().getParent());
+		nodes.add(node.getParent());
+		nodes.add(node);
 		
-		nodes[1] = node.getParent();
-		nodes[0] = nodes[1].getParent();
-		
-		return nodes;
+		return nodes.toArray(new TreeNode[nodes.size()]);
 		
 	}
 	

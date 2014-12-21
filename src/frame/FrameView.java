@@ -17,13 +17,18 @@ import java.awt.geom.Line2D;
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 import javax.swing.event.InternalFrameAdapter;
 import javax.swing.event.InternalFrameEvent;
 
+import model.ElementNode;
 import model.FrameNode;
+import model.elements.CircleElement;
+import model.elements.ElementBuilder;
 import model.elements.FrameElement;
 import model.elements.RectangleElement;
+import model.elements.TriangleElement;
 import painters.ElementPainter;
 import editorLook.MainFrame;
 import events.UpdateElementsEvent;
@@ -64,21 +69,12 @@ public class FrameView extends JInternalFrame implements UpdateElementsListener
 		});
 		
 		
-		this.addMouseListener(new MouseAdapter() {
+		drawArea.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				
 				if (e.getButton()==MouseEvent.BUTTON1)
 				{
-					Point p = e.getPoint();
-					
-					System.out.println(p.x + "  " + p.y);
-					
-					Paint paint = new Color(255, 255, 255);
-					Stroke stroke = new BasicStroke(1);
-					RectangleElement mojElement = new RectangleElement(paint, stroke, 
-							p, new Dimension(10, 10));
-					
-					frameNode.getModel().addElement(mojElement);
+					frameNode.getStateManager().getState().draw(e, frameNode);
 				}
 			}
 		});

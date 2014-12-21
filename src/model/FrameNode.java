@@ -1,8 +1,11 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.swing.tree.TreeNode;
+
+import states.StateManager;
 
 public class FrameNode implements TreeNode
 {
@@ -12,8 +15,22 @@ public class FrameNode implements TreeNode
 	int parentId;
 	ProjectNode parent;
 	
+	ArrayList<ElementNode> elements = new ArrayList<ElementNode>();
+	
 	FrameModel model = new FrameModel();
 	
+	private StateManager stateManager = new StateManager();
+	
+	public StateManager getStateManager() {
+		return stateManager;
+	}
+
+
+	public void setStateManager(StateManager stateManager) {
+		this.stateManager = stateManager;
+	}
+
+
 	public int getParentId() {
 		return parentId;
 	}
@@ -38,6 +55,11 @@ public class FrameNode implements TreeNode
 		return this.name;
 	}
 	
+	public void addElement(ElementNode elem)
+	{
+		elements.add(elem);
+	}
+	
 	@SuppressWarnings("rawtypes")
 	@Override
 	public Enumeration children() {
@@ -54,19 +76,19 @@ public class FrameNode implements TreeNode
 	@Override
 	public TreeNode getChildAt(int childIndex) {
 		// TODO Auto-generated method stub
-		return null;
+		return (TreeNode) getElement(childIndex);
 	}
 
 	@Override
 	public int getChildCount() {
 		// TODO Auto-generated method stub
-		return 0;
+		return getElementCount();
 	}
 
 	@Override
 	public int getIndex(TreeNode node) {
 		// TODO Auto-generated method stub
-		return 0;
+		return getFrameIndex((ElementNode)node);
 	}
 
 	@Override
@@ -79,6 +101,18 @@ public class FrameNode implements TreeNode
 	public boolean isLeaf() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	public int getFrameIndex(ElementNode elementNode) {
+		return elements.indexOf(elementNode);
+	}
+	
+	public ElementNode getElement(int index) {
+		return elements.get(index);
+	}
+	
+	public int getElementCount() {
+		return elements.size();
 	}
 	
 	public int getId() {

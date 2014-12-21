@@ -5,7 +5,6 @@ import java.awt.Paint;
 import java.awt.Point;
 import java.awt.Stroke;
 
-import javax.swing.text.Position;
 
 import painters.ElementPainter;
 

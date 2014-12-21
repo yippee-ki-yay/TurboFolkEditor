@@ -35,6 +35,12 @@ public class FrameManager extends JDesktopPane
 		
 		layout.add(newForm);
 		newForm.toFront();  //ovakve fije koje uticu na frejm moramo pozvati posle add()
+		try {
+			newForm.setSelected(true);
+		} catch (PropertyVetoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void selectNext()

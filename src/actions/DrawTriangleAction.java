@@ -7,6 +7,9 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
+import editorLook.MainFrame;
+import frame.FrameView;
+
 
 public class DrawTriangleAction extends AbstractAction
 {
@@ -26,7 +29,8 @@ public class DrawTriangleAction extends AbstractAction
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 			
-	
+		((FrameView)(MainFrame.getInstance().getDesktopManager().getSelectedFrame())).
+        getFrame().getStateManager().setTriangleState();
 		
 	}
 

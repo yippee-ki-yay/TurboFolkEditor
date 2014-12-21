@@ -17,7 +17,7 @@ public abstract class ElementPainter
 
 	public void paint(Graphics2D gg, FrameElement element)
 	{
-		gg.setPaint(Color.RED);
+		gg.setPaint(Color.BLACK);
 
 		gg.setStroke(element.getStroke());
 		gg.draw(getShape());

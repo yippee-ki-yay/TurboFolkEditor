@@ -7,6 +7,9 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
+import editorLook.MainFrame;
+import frame.FrameView;
+
 
 public class DrawCircleAction extends AbstractAction
 {
@@ -25,7 +28,8 @@ public class DrawCircleAction extends AbstractAction
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 			
-	
+		((FrameView)(MainFrame.getInstance().getDesktopManager().getSelectedFrame())).
+        getFrame().getStateManager().setCircleState();
 		
 	}
 

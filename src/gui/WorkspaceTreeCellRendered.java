@@ -1,14 +1,17 @@
 package gui;
 
 import java.awt.Component;
+import java.lang.annotation.ElementType;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
+import model.ElementNode;
 import model.FrameNode;
 import model.ProjectNode;
+import model.ElementNode.ElemType;
 
 public class WorkspaceTreeCellRendered  extends DefaultTreeCellRenderer
 {
@@ -27,13 +30,31 @@ public class WorkspaceTreeCellRendered  extends DefaultTreeCellRenderer
 		
 		super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
 
+			Icon icon = null;
+		
 	      if (value instanceof FrameNode ) {
                   
-              Icon icon = new ImageIcon("img/frame_node.png");
+              icon = new ImageIcon("img/frame_node.png");
               setIcon(icon);
 
           } else if (value instanceof ProjectNode ) {                  
-              Icon icon = new ImageIcon("img/project_node.png");
+              icon = new ImageIcon("img/project_node.png");
+              setIcon(icon);
+          } else if(value instanceof ElementNode)
+          {
+        	  if(((ElementNode)value).getType() == ElemType.RECTANGLE)
+        	  {
+        		  icon = new ImageIcon("img/rectangle_node.png");
+        	  }
+        	  else if(((ElementNode)value).getType() == ElemType.TRIANGLE)
+        	  {
+        		  icon = new ImageIcon("img/triangle_node.png"); 
+        	  }
+        	  else if(((ElementNode)value).getType() == ElemType.CIRCLE)
+        	  {
+        		  icon = new ImageIcon("img/circle_node.png"); 
+        	  }
+        	
               setIcon(icon);
           }
               

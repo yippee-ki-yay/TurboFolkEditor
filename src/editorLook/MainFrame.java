@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
 import model.WorkspaceTreeModel;
 
@@ -70,11 +72,13 @@ public class MainFrame extends JFrame
 		setIconImage(iconImg.getImage());
 		this.addWindowListener(new WindowHandler()); 	
 		
-		/*try {
-			WebLookAndFeel.install();
+		try {
+			//WebLookAndFeel.install();
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			SwingUtilities.updateComponentTreeUI(this);
 		} catch (Exception e) {
 		    e.printStackTrace();
-		}*/
+		}
 	}
 	
 	private void populateWindow()
