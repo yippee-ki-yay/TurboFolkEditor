@@ -56,6 +56,7 @@ public class FrameLayoutManager {
 		currState = Layout.CASCADE;
 		
         JInternalFrame frames[] = desktopPane.getAllFrames();
+        
 		
 		int nFrames = frames.length;
 		

@@ -18,14 +18,18 @@ public class RectangleState implements State
 
 	@Override
 	public void draw(MouseEvent e, FrameNode node) {
-		RectangleElement rec = new ElementBuilder().
-				setPos(e.getPoint()).buildRectangle();
-		
-		node.getModel().addElement(rec);
-		
-		ElementNode newNode = new ElementNode(node, "Rectangle", ElemType.RECTANGLE);
-		node.addElement(newNode);
-		SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
+		if(node.getModel().isSpaceFree(e.getPoint()))
+		{
+			RectangleElement rec = new ElementBuilder().
+					setPos(e.getPoint()).buildRectangle();
+			
+			node.getModel().addElement(rec);
+			
+			ElementNode newNode = new ElementNode(node, "Rectangle", ElemType.RECTANGLE);
+			node.addElement(newNode);
+			SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
+			
+		}
 		
 	}
 

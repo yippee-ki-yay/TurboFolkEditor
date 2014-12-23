@@ -54,6 +54,10 @@ public class WorkspaceTreeCellRendered  extends DefaultTreeCellRenderer
         	  {
         		  icon = new ImageIcon("img/circle_node.png"); 
         	  }
+        	  else if(((ElementNode)value).getType() == ElemType.TREE)
+        	  {
+        		  icon = new ImageIcon("img/tree_node.png"); 
+        	  }
         	
               setIcon(icon);
           }

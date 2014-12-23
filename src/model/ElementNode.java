@@ -9,7 +9,7 @@ public class ElementNode implements TreeNode
 	FrameNode parent;
 	String name;
 	
-	public enum ElemType {RECTANGLE, TRIANGLE, CIRCLE};
+	public enum ElemType {RECTANGLE, TRIANGLE, CIRCLE, TREE};
 	
 	ElemType type;
 

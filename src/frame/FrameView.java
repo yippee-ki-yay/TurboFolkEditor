@@ -30,6 +30,7 @@ import model.elements.FrameElement;
 import model.elements.RectangleElement;
 import model.elements.TriangleElement;
 import painters.ElementPainter;
+import painters.Turtle;
 import editorLook.MainFrame;
 import events.UpdateElementsEvent;
 import events.UpdateElementsListener;
@@ -89,8 +90,7 @@ public class FrameView extends JInternalFrame implements UpdateElementsListener
 		protected void paintComponent(Graphics g)
 		{
 			super.paintComponents(g);
-			Graphics2D g2 = (Graphics2D)g;
-
+			Graphics2D g2 = (Graphics2D)g;	
 			
 			for(FrameElement elem : frameNode.getModel().getFrameElements())
 			{

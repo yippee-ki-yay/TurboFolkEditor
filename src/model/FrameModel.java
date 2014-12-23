@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 import javax.swing.event.EventListenerList;
@@ -11,7 +12,7 @@ import events.UpdateElementsListener;
 public class FrameModel 
 {
 	private ArrayList<FrameElement> frameElements = new ArrayList<FrameElement>();
-	private EventListenerList eventsList = new EventListenerList();
+	private EventListenerList listenerList = new EventListenerList();
 	UpdateElementsEvent updateEvent = null;
 	
 	public void addElement(FrameElement elem)
@@ -28,21 +29,39 @@ public class FrameModel
 		this.frameElements = frameElements;
 	}
 	
+	
+	/**
+	 * Proverava da li vec postoji neki element na tom mestu
+	 * da bi smo znali da li mozes nacrtati tu novi element
+	 * 
+	 * @return
+	 */
+	public boolean isSpaceFree(Point p)
+	{
+		for(FrameElement e : frameElements)
+		{
+			if(e.getElemPainter().isElementAt(p))
+				return false;
+		}
+		return true;
+	}
+	
+	
 	public void addUpdateElementsListener(UpdateElementsListener l)
 	{
-		eventsList.add(UpdateElementsListener.class, l);
+		listenerList.add(UpdateElementsListener.class, l);
 		fireUpdatePreformed();
 	}
 	
 	public void removeUpdateElementsListener(UpdateElementsListener l)
 	{
-		eventsList.remove(UpdateElementsListener.class, l);
+		listenerList.remove(UpdateElementsListener.class, l);
 	}
 	
 	public void fireUpdatePreformed()
 	{
 	     // Guaranteed to return a non-null array
-	     Object[] listeners = eventsList.getListenerList();
+	     Object[] listeners = listenerList.getListenerList();
 	     // Process the listeners last to first, notifying
 	     // those that are interested in this event
 	     for (int i = listeners.length-2; i>=0; i-=2) {

@@ -17,15 +17,19 @@ public class CircleState implements State
 
 	@Override
 	public void draw(MouseEvent e, FrameNode node) {
-		// TODO Auto-generated method stub
-		CircleElement circle = new ElementBuilder().setPos(e.getPoint())
-				                                    .buildCircle();
 		
-		node.getModel().addElement(circle);
+		if(node.getModel().isSpaceFree(e.getPoint()))
+		{
+			CircleElement circle = new ElementBuilder().setPos(e.getPoint())
+                    .buildCircle();
+
+			node.getModel().addElement(circle);
+
+			ElementNode newNode = new ElementNode(node,"Circle", ElemType.CIRCLE);
+			node.addElement(newNode);
+			SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
+		}
 		
-		ElementNode newNode = new ElementNode(node,"Circle", ElemType.CIRCLE);
-		node.addElement(newNode);
-		SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
 		
 	}
 

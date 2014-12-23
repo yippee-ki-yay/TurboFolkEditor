@@ -39,6 +39,7 @@ public class MainFrame extends JFrame
 	private FrameManager desktopManager;
 	private ActionManager actionManager;
 	private ToolBarPalet toolPalet;
+	private StatusBar    statusBar;
 	private WorkspaceTree workspaceTree;
 	private WorkspaceTreeModel workspaceTreeModel;
 	
@@ -107,7 +108,7 @@ public class MainFrame extends JFrame
 		toolbar = new MyToolBar();
 		add(toolbar, BorderLayout.NORTH);
 		
-		StatusBar statusBar = new StatusBar();
+	     statusBar = new StatusBar();
 		add(statusBar, BorderLayout.SOUTH);
 		
 		add(sp1, BorderLayout.CENTER);

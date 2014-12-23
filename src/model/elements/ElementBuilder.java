@@ -9,7 +9,7 @@ import java.awt.Stroke;
 
 public class ElementBuilder 
 {
-	Paint paint  = new Color(255, 255, 255);
+	Paint paint  = new Color(255, 0, 0);
 	Stroke stroke = new BasicStroke(2f);
 	Point pos = new Point(0, 0);
 	Dimension size = new Dimension(20,20);
@@ -27,6 +27,11 @@ public class ElementBuilder
 	public TriangleElement buildTriangle()
 	{
 		return new TriangleElement(paint, stroke, pos, size);
+	}
+	
+	public TreeElement buildTree()
+	{
+		return new TreeElement(paint, stroke, pos, size);
 	}
 	
 	public ElementBuilder setPaint(Paint p)

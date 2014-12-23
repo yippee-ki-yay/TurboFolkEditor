@@ -6,6 +6,7 @@ public class StateManager {
 	private RectangleState recState;
 	private TriangleState triangleState;
 	private SelectionState selectionState;
+	private TreeState treeState;
 	
 	private State currState = null;
 	
@@ -15,6 +16,7 @@ public class StateManager {
 		recState = new RectangleState();
 		triangleState = new TriangleState();
 		selectionState = new SelectionState();
+		treeState = new TreeState();
 		
 		currState = selectionState;
 	}
@@ -35,6 +37,14 @@ public class StateManager {
 
 	public void setCircleState() {
 		currState = circleState;
+	}
+	
+	public TreeState getTreeState() {
+		return treeState;
+	}
+
+	public void setTreeState() {
+		currState = treeState;
 	}
 
 	public RectangleState getRecState() {

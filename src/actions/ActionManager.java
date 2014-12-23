@@ -17,14 +17,6 @@ public class ActionManager
 	private AboutAction aboutAction = new AboutAction();
 	private ExitAction exitAction = new ExitAction();
 
-	public ExitAction getExitAction() {
-		return exitAction;
-	}
-
-	public void setExitAction(ExitAction exitAction) {
-		this.exitAction = exitAction;
-	}
-
 	private CascadeLayoutAction cascadeLayout = new CascadeLayoutAction();
 	private HorizontalLayoutAction horizontalLayout =
 			                        new HorizontalLayoutAction();
@@ -32,8 +24,16 @@ public class ActionManager
 	private DrawCircleAction circleAction = new DrawCircleAction();
 	private DrawSquareAction squareAction = new DrawSquareAction();
 	private DrawTriangleAction triangleAction = new DrawTriangleAction();
+	private DrawTreeAction treeAction = new DrawTreeAction();
+	private SelectAction selectAction = new SelectAction();
 	
-	
+	public ExitAction getExitAction() {
+		return exitAction;
+	}
+
+	public void setExitAction(ExitAction exitAction) {
+		this.exitAction = exitAction;
+	}	
 	
 	public AboutAction getAboutAction() {
 		return aboutAction;
@@ -188,6 +188,22 @@ public class ActionManager
 
 	public void setFormAction(NewFrameAction formAction) {
 		this.formAction = formAction;
+	}
+
+	public DrawTreeAction getTreeAction() {
+		return treeAction;
+	}
+
+	public void setTreeAction(DrawTreeAction treeAction) {
+		this.treeAction = treeAction;
+	}
+
+	public SelectAction getSelectAction() {
+		return selectAction;
+	}
+
+	public void setSelectAction(SelectAction selectAction) {
+		this.selectAction = selectAction;
 	}
 	
 	
