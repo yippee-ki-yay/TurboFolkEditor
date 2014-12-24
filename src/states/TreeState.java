@@ -23,11 +23,20 @@ public class TreeState implements State
 			TreeElement tree = new ElementBuilder().setPos(e.getPoint())
                     .setPaint(new Color(0, 255, 0)).buildTree();
 
+			tree.setName("Tree" + MainFrame.element_id);
+			tree.setDesc("Tree element");
+			
 			node.getModel().addElement(tree);
 
-			ElementNode newNode = new ElementNode(node,"Tree", ElemType.TREE);
+			ElementNode newNode = new ElementNode(node,"Tree"+ MainFrame.element_id, 
+					ElemType.TREE, tree);
+
 			node.addElement(newNode);
 			SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
+			
+			tree.setNode(newNode);
+			
+			MainFrame.element_id++;
 		}
 		
 		

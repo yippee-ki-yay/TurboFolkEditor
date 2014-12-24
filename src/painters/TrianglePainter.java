@@ -1,5 +1,6 @@
 package painters;
 
+import java.awt.Point;
 import java.awt.geom.GeneralPath;
 import java.util.Random;
 
@@ -12,6 +13,16 @@ public class TrianglePainter extends ElementPainter {
 	public TrianglePainter(FrameElement elem) {
 		super(elem);
 		
+		Turtle t = new Turtle(elem.getPos().x, elem.getPos().y);
+		elem.setPos(new Point(elem.getPos().x- (int)elem.getSize().getWidth()/2, elem.getPos().y));
+		t.turnLeft(60);
+		t.forward(elem.getSize().getWidth());
+		t.turnLeft(120);
+		t.forward(elem.getSize().getWidth());
+		t.turnLeft(120);
+		t.forward(elem.getSize().getWidth());
+		
+		
 		GeneralPath trougao = new GeneralPath();
 		trougao.moveTo(elem.getPos().x, elem.getPos().y);
 		trougao.lineTo(elem.getPos().x-10, elem.getPos().y+30);
@@ -19,7 +30,7 @@ public class TrianglePainter extends ElementPainter {
 		trougao.closePath();
 		
 		
-		this.shape = trougao;
+		this.shape = t.getG();
 	}
 	
 	

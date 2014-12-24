@@ -14,6 +14,8 @@ public class ElementBuilder
 	Point pos = new Point(0, 0);
 	Dimension size = new Dimension(20,20);
 	
+	public static int elem_id = 0;
+	
 	public RectangleElement buildRectangle()
 	{	
 		return new RectangleElement(paint, stroke, pos, size);

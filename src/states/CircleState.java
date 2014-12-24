@@ -23,11 +23,20 @@ public class CircleState implements State
 			CircleElement circle = new ElementBuilder().setPos(e.getPoint())
                     .buildCircle();
 
+			circle.setName("Circle" + MainFrame.element_id);
+			circle.setDesc("Circle element");
+			
 			node.getModel().addElement(circle);
 
-			ElementNode newNode = new ElementNode(node,"Circle", ElemType.CIRCLE);
+			ElementNode newNode = new ElementNode(node,"Circle"+ MainFrame.element_id, 
+					ElemType.CIRCLE, circle);
+
 			node.addElement(newNode);
 			SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
+			
+			circle.setNode(newNode);
+			
+			MainFrame.element_id++;
 		}
 		
 		

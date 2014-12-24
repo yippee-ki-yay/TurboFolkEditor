@@ -13,6 +13,7 @@ import java.awt.Stroke;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Line2D;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
@@ -43,6 +44,11 @@ public class FrameView extends JInternalFrame implements UpdateElementsListener
 	private int myId = 0;
 	private FrameNode frameNode; //referenca ka nodu u drvetu koja predstavlja frame
 	private DrawArea drawArea;
+	
+	private enum Handle 
+	{North, South, East, West, SouthEast, SouthWest, NorthEast, NorthWest};
+	
+	static int handle_size = 3;
 	
 	public FrameView(String title, int id, final FrameNode frameNode)
 	{
@@ -96,8 +102,47 @@ public class FrameView extends JInternalFrame implements UpdateElementsListener
 			{
 				elem.getElemPainter().paint(g2, elem);
 			}
+			
+			drawHandle(g2);
 
 		}
+	}
+	
+	
+	public void drawHandle(Graphics2D g2)
+	{
+		//prolazimo kroz listu selektovanih elementa
+		for(FrameElement elem : frameNode.selectionModel.getSelectedElements())
+		{
+			g2.setStroke(new BasicStroke((float)1, BasicStroke.CAP_SQUARE, 
+					BasicStroke.JOIN_BEVEL, 1f, new float[]{3f, 6f}, 0 ));
+			g2.setPaint(Color.BLACK);
+		
+			g2.drawRect((int)elem.getPos().getX(), (int)elem.getPos().getY(),
+					(int)elem.getSize().getWidth(), (int)elem.getSize().getHeight());
+			
+			//for(Handle h : Handle.values())
+			{
+				double size = handle_size;
+				double x = elem.getPos().getX();
+				double y = elem.getPos().getY();
+				double w = elem.getSize().getWidth();
+				double h = elem.getSize().getHeight();
+				
+				g2.fill(new Rectangle2D.Double(x-size/2, y-size/2, size, size));
+				g2.fill(new Rectangle2D.Double(x-size/2 + w/2, y-size/2, size, size));
+				g2.fill(new Rectangle2D.Double(x-size/2 + w, y-size/2, size, size));
+				
+				g2.fill(new Rectangle2D.Double(x-size/2, y-size/2 + h/2, size, size));
+				g2.fill(new Rectangle2D.Double(x-size/2 + w, y-size/2 + h/2, size, size));
+				
+				g2.fill(new Rectangle2D.Double(x-size/2, y-size/2 + h, size, size));
+				g2.fill(new Rectangle2D.Double(x-size/2 + w/2, y-size/2 + h, size, size));
+				g2.fill(new Rectangle2D.Double(x-size/2 + w, y-size/2 +h, size, size));
+			}
+		}
+		
+		
 	}
 	
 	public FrameNode getFrame() {

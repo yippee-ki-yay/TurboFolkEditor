@@ -19,6 +19,8 @@ import actions.ActionManager;
 
 import com.alee.laf.WebLookAndFeel;
 
+import dialogs.PropertyDialog;
+
 import frame.FrameManager;
 import gui.MyMenuBar;
 import gui.MyToolBar;
@@ -32,6 +34,7 @@ public class MainFrame extends JFrame
 {
 	
 	public static int frame_id = 0;
+	public static int element_id = 0;
 	private static MainFrame instance = null;
 	
 	private MyMenuBar menu;
@@ -42,6 +45,7 @@ public class MainFrame extends JFrame
 	private StatusBar    statusBar;
 	private WorkspaceTree workspaceTree;
 	private WorkspaceTreeModel workspaceTreeModel;
+	private PropertyDialog propertyDialog;
 	
 
 	public static MainFrame getInstance()
@@ -113,10 +117,17 @@ public class MainFrame extends JFrame
 		
 		add(sp1, BorderLayout.CENTER);
 		
-		
+		propertyDialog = new PropertyDialog();
 	}
 	
-	
+	public PropertyDialog getPropertyDialog() {
+		return propertyDialog;
+	}
+
+	public void setPropertyDialog(PropertyDialog propertyDialog) {
+		this.propertyDialog = propertyDialog;
+	}
+
 	public WorkspaceTree getWorkspaceTree() {
 		return workspaceTree;
 	}

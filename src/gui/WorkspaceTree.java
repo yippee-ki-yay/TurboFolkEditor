@@ -11,6 +11,9 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
+import dialogs.PropertyDialog;
+
+import model.ElementNode;
 import model.FrameNode;
 import model.ProjectNode;
 import model.WorkspaceTreeModel;
@@ -37,7 +40,20 @@ public class WorkspaceTree extends JTree implements TreeSelectionListener
             	 if(o instanceof FrameNode)
             	 {
                   	 MainFrame.getInstance().getDesktopManager().showFrame(((FrameNode) o).getId());
-            	 }}
+            	 }
+            	 else if(o instanceof ElementNode)
+            	 {
+            		ElementNode node = ((ElementNode) o);
+            		MainFrame.getInstance().getPropertyDialog().
+            		                   setCurrElement(node.getElement());
+            		
+            		node.setName(node.getElement().getName());
+            		((FrameNode) node.getParent()).getModel().fireUpdatePreformed(); //updejt zbog boje
+            		SwingUtilities.updateComponentTreeUI(WorkspaceTree.this);
+            		
+            	 }
+            	 
+            	 }
          }
      };
 	});
@@ -79,6 +95,11 @@ public class WorkspaceTree extends JTree implements TreeSelectionListener
 	    		MainFrame.getInstance().getActionManager().getDeleteAction().
                 putValue(Action.SHORT_DESCRIPTION, "Delete project");
 	    	}
+	    	else if(o instanceof ElementNode)
+	    	{
+	    		ElementNode node = (ElementNode)o;
+	    		((FrameNode)node.getParent()).selectionModel.addSelectedElement(node.getElement());
+	    	}
 	    	else
 	    	{
 	    		MainFrame.getInstance().getActionManager().getFormAction().setEnabled(false);
@@ -102,12 +123,21 @@ public class WorkspaceTree extends JTree implements TreeSelectionListener
 		
 	}
 	
+	public void selectElementNode(ElementNode elemNode)
+	{
+		TreeNode[] arr = ((WorkspaceTreeModel)getModel()).getPathToRoot(elemNode);
+	    
+		TreePath path = new TreePath(arr);
+		setSelectionPath(path);
+	}
+	
 	public void expandNode(FrameNode frameNode)
 	{
 	    TreeNode[] arr = ((WorkspaceTreeModel)getModel()).getPathToRoot(frameNode);
 	    
 		TreePath path = new TreePath(arr);
 		expandPath(path);
+		
 	}
 	
 	

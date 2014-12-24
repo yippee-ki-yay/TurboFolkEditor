@@ -22,11 +22,19 @@ public class TriangleState implements State
 		{
 			TriangleElement trig = new ElementBuilder().setPos(e.getPoint()).buildTriangle();
 			
+			trig.setName("Triangle" + MainFrame.element_id);
+			trig.setDesc("Triangle element");
+			
 			node.getModel().addElement(trig);
 			
-			ElementNode newNode = new ElementNode(node,"Triangle",ElemType.TRIANGLE);
+			ElementNode newNode = new ElementNode(node,"Triangle"+ MainFrame.element_id,
+					ElemType.TRIANGLE, trig);
+			newNode.setName("Triangle" + MainFrame.element_id);
 			node.addElement(newNode);
 			SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
+			trig.setNode(newNode);
+			
+			MainFrame.element_id++;
 		}
 		
 		

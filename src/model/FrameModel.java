@@ -46,6 +46,16 @@ public class FrameModel
 		return true;
 	}
 	
+	public FrameElement getElementAt(Point p)
+	{
+		
+		for(FrameElement e : frameElements)
+		{
+			if(e.getElemPainter().isElementAt(p))
+				return e;
+		}
+		return null;
+	}
 	
 	public void addUpdateElementsListener(UpdateElementsListener l)
 	{

@@ -1,6 +1,7 @@
 package painters;
 
-import java.awt.geom.*;
+import java.awt.Point;
+import java.awt.geom.GeneralPath;
 
 public class Turtle {
 
@@ -83,6 +84,10 @@ public class Turtle {
 		this.g = g;
 	}
 	
+	public Point getCurrPoint()
+	{
+		return new Point((int)x, (int)y);
+	}
 	
 
 }

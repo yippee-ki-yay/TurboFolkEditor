@@ -1,13 +1,16 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
 import javax.swing.tree.TreeNode;
 
-public class ProjectNode implements TreeNode
+public class ProjectNode implements TreeNode, Serializable
 {
-    ArrayList<FrameNode> frameNodes = new ArrayList<FrameNode>();
+	private static final long serialVersionUID = -4573316885575262635L;
+	
+	transient private ArrayList<FrameNode> frameNodes = new ArrayList<FrameNode>();
 	private String name;
 	
 	int id;

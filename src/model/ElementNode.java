@@ -4,6 +4,8 @@ import java.util.Enumeration;
 
 import javax.swing.tree.TreeNode;
 
+import model.elements.FrameElement;
+
 public class ElementNode implements TreeNode
 {
 	FrameNode parent;
@@ -12,12 +14,15 @@ public class ElementNode implements TreeNode
 	public enum ElemType {RECTANGLE, TRIANGLE, CIRCLE, TREE};
 	
 	ElemType type;
+	
+	FrameElement element; //refernca na graficki element sa kojim je povezan
 
-	public ElementNode(FrameNode parent, String name, ElemType t)
+	public ElementNode(FrameNode parent, String name, ElemType t, FrameElement elem)
 	{
 		this.parent = parent;
 		type = t;
 		this.name = name;
+		this.element = elem;
 	}
 	
 	@Override
@@ -26,6 +31,22 @@ public class ElementNode implements TreeNode
 		return name;
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public FrameElement getElement() {
+		return element;
+	}
+
+	public void setElement(FrameElement element) {
+		this.element = element;
+	}
+
 	@Override
 	public Enumeration children() {
 		// TODO Auto-generated method stub

@@ -19,6 +19,8 @@ public class FrameNode implements TreeNode
 	
 	FrameModel model = new FrameModel();
 	
+	public FrameSelectionModel selectionModel = new FrameSelectionModel();
+	
 	private StateManager stateManager = new StateManager();
 	
 	public StateManager getStateManager() {

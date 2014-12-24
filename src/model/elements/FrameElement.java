@@ -5,7 +5,8 @@ import java.awt.Paint;
 import java.awt.Point;
 import java.awt.Stroke;
 
-
+import model.ElementNode;
+import model.FrameNode;
 import painters.ElementPainter;
 
 public abstract class FrameElement 
@@ -14,12 +15,15 @@ public abstract class FrameElement
 	protected Stroke stroke;
 	
 	protected String name;
+	protected String desc;
 	
 	protected Point pos;
 
 	protected Dimension size;
 	
 	protected ElementPainter elemPainter;
+	
+	private ElementNode node;
 
 	public FrameElement(Paint paint, Stroke stroke, Point pos, Dimension size) {
 		super();
@@ -53,6 +57,14 @@ public abstract class FrameElement
 		this.name = name;
 	}
 	
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+	
 	public Point getPos() {
 		return pos;
 	}
@@ -75,6 +87,14 @@ public abstract class FrameElement
 
 	public void setElemPainter(ElementPainter elemPainter) {
 		this.elemPainter = elemPainter;
+	}
+
+	public ElementNode getNode() {
+		return node;
+	}
+
+	public void setNode(ElementNode newNode) {
+		this.node = newNode;
 	}
 
 }

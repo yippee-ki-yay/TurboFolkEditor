@@ -23,11 +23,19 @@ public class RectangleState implements State
 			RectangleElement rec = new ElementBuilder().
 					setPos(e.getPoint()).buildRectangle();
 			
+			rec.setName("Rectangle" + MainFrame.element_id);
+			rec.setDesc("Rectangle element");
+			
 			node.getModel().addElement(rec);
 			
-			ElementNode newNode = new ElementNode(node, "Rectangle", ElemType.RECTANGLE);
+			ElementNode newNode = new ElementNode(node, "Rectangle"
+			+ MainFrame.element_id, ElemType.RECTANGLE, rec);
+
 			node.addElement(newNode);
 			SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
+			rec.setNode(newNode);
+			
+			MainFrame.element_id++;
 			
 		}
 		
