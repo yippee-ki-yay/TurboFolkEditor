@@ -1,102 +1,122 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Enumeration;
 
 import javax.swing.tree.TreeNode;
 
 import model.elements.FrameElement;
 
-public class ElementNode implements TreeNode
+public class ElementNode implements TreeNode, Serializable
 {
-	FrameNode parent;
-	String name;
-	
-	public enum ElemType {RECTANGLE, TRIANGLE, CIRCLE, TREE};
-	
-	ElemType type;
-	
-	FrameElement element; //refernca na graficki element sa kojim je povezan
+    private static final long serialVersionUID = -6834692298664919746L;
 
-	public ElementNode(FrameNode parent, String name, ElemType t, FrameElement elem)
-	{
-		this.parent = parent;
-		type = t;
-		this.name = name;
-		this.element = elem;
-	}
-	
-	@Override
-	public String toString()
-	{
-		return name;
-	}
-	
-	public String getName() {
-		return name;
-	}
+    private FrameNode parent;
+    private String name;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    static public enum ElemType
+    {
+        RECTANGLE, TRIANGLE, CIRCLE, TREE
+    };
 
-	public FrameElement getElement() {
-		return element;
-	}
+    private ElemType type;
 
-	public void setElement(FrameElement element) {
-		this.element = element;
-	}
+    private FrameElement element; // refernca na graficki element sa kojim je
+                                  // povezan
 
-	@Override
-	public Enumeration children() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public ElementNode(FrameNode parent, String name, ElemType t,
+            FrameElement elem)
+    {
+        this.parent = parent;
+        type = t;
+        this.name = name;
+        this.element = elem;
+    }
 
-	@Override
-	public boolean getAllowsChildren() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public String toString()
+    {
+        return name;
+    }
 
-	@Override
-	public TreeNode getChildAt(int childIndex) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public String getName()
+    {
+        return name;
+    }
 
-	@Override
-	public int getChildCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    public void setName(String name)
+    {
+        this.name = name;
+    }
 
-	@Override
-	public int getIndex(TreeNode node) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    public FrameElement getElement()
+    {
+        return element;
+    }
 
-	@Override
-	public TreeNode getParent() {
-		// TODO Auto-generated method stub
-		return parent;
-	}
+    public void setElement(FrameElement element)
+    {
+        this.element = element;
+    }
 
-	@Override
-	public boolean isLeaf() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	
-	
-	public ElemType getType() {
-		return type;
-	}
+    @SuppressWarnings("rawtypes")
+    @Override
+    public Enumeration children()
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
-	public void setType(ElemType type) {
-		this.type = type;
-	}
-	
+    @Override
+    public boolean getAllowsChildren()
+    {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public TreeNode getChildAt(int childIndex)
+    {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public int getChildCount()
+    {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public int getIndex(TreeNode node)
+    {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public TreeNode getParent()
+    {
+        // TODO Auto-generated method stub
+        return parent;
+    }
+
+    @Override
+    public boolean isLeaf()
+    {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    public ElemType getType()
+    {
+        return type;
+    }
+
+    public void setType(ElemType type)
+    {
+        this.type = type;
+    }
 
 }

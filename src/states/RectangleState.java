@@ -1,44 +1,42 @@
 package states;
 
+import java.awt.Point;
 import java.awt.event.MouseEvent;
-import java.lang.annotation.ElementType;
 
-import javax.swing.SwingUtilities;
-
-import editorLook.MainFrame;
-
-import model.ElementNode;
 import model.ElementNode.ElemType;
-import model.FrameNode;
-import model.elements.ElementBuilder;
-import model.elements.RectangleElement;
 
-public class RectangleState implements State
+import commands.AddElementCommand;
+
+import frame.FrameView;
+
+public class RectangleState extends State
 {
 
-	@Override
-	public void draw(MouseEvent e, FrameNode node) {
-		if(node.getModel().isSpaceFree(e.getPoint()))
-		{
-			RectangleElement rec = new ElementBuilder().
-					setPos(e.getPoint()).buildRectangle();
-			
-			rec.setName("Rectangle" + MainFrame.element_id);
-			rec.setDesc("Rectangle element");
-			
-			node.getModel().addElement(rec);
-			
-			ElementNode newNode = new ElementNode(node, "Rectangle"
-			+ MainFrame.element_id, ElemType.RECTANGLE, rec);
+    @Override
+    public void draw(MouseEvent e, FrameView node)
+    {
 
-			node.addElement(newNode);
-			SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
-			rec.setNode(newNode);
-			
-			MainFrame.element_id++;
-			
-		}
-		
-	}
+        Point pos = node.pointToUserSpace(e.getPoint());
+        if (node.getFrameNode().getModel().isSpaceFree(pos))
+        {
+            node.getCommandManager().add(
+                    new AddElementCommand(node, ElemType.RECTANGLE, pos));
+        }
+
+    }
+
+    @Override
+    public void drag(MouseEvent e, FrameView node)
+    {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void released(MouseEvent e, FrameView node)
+    {
+        // TODO Auto-generated method stub
+
+    }
 
 }

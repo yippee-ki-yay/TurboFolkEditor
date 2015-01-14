@@ -23,14 +23,15 @@ public class DrawSquareAction extends AbstractAction
 		
 		putValue(SHORT_DESCRIPTION, "Draw square");
 		putValue(SMALL_ICON, new ImageIcon("img/square.png"));
-		putValue(NAME, "Draw square");
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 			
 		((FrameView)(MainFrame.getInstance().getDesktopManager().getSelectedFrame())).
-		                                    getFrame().getStateManager().setRecState();
+		                                    getStateManager().setRecState();
+		
+		MainFrame.getInstance().getStatusBar().setState("Add element");
 		
 	}
 

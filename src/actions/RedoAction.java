@@ -7,6 +7,9 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
+import editorLook.MainFrame;
+import frame.FrameView;
+
 
 public class RedoAction extends AbstractAction
 {
@@ -24,10 +27,10 @@ public class RedoAction extends AbstractAction
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-			
-	
-		
+	public void actionPerformed(ActionEvent arg0) 
+	{
+		FrameView frame = (FrameView) MainFrame.getInstance().getDesktopManager().getSelectedFrame();
+		frame.getCommandManager().doCommand();
 	}
 
 }

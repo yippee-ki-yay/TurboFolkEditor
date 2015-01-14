@@ -36,7 +36,7 @@ public class LassoState extends State {
 			if((width<0)&&(height<0)){
 				rect.setRect(mousePos.getX(), mousePos.getY(),Math.abs(width),Math.abs(height));
 			}
-			else if((width<0)&&(height>=0)){
+			/*else if((width<0)&&(height>=0)){
 				rect.setRect(mousePos.getX(), med.getLastPosition().getY(),Math.abs(width),Math.abs(height));
 			}
 			else if((width>0)&&(height<0)){
@@ -44,7 +44,7 @@ public class LassoState extends State {
 			}
 			else{
 				rect.setRect(med.getLastPosition().getX(), med.getLastPosition().getY(),Math.abs(width),Math.abs(height));
-			}
+			}*/
 			med.setSelectionRectangle(rect);
 			
 			
@@ -56,7 +56,7 @@ public class LassoState extends State {
 	}
 
 		public void mouseReleased(MouseEvent e) {		
-		med.setSelectionRectangle(new Rectangle2D.Double(0,0,0,0));
+		//med.setSelectionRectangle(new Rectangle2D.Double(0,0,0,0));
 		med.repaint();
 		med.startSelectState();
 	}

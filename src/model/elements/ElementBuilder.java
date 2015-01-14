@@ -10,7 +10,7 @@ import java.awt.Stroke;
 public class ElementBuilder 
 {
 	Paint paint  = new Color(255, 0, 0);
-	Stroke stroke = new BasicStroke(2f);
+	transient Stroke stroke = new BasicStroke(2f);
 	Point pos = new Point(0, 0);
 	Dimension size = new Dimension(20,20);
 	
@@ -44,6 +44,14 @@ public class ElementBuilder
 	
 	public ElementBuilder setPos(Point p)
 	{
+		this.pos = p;
+		return this;
+	}
+	
+	public ElementBuilder setPosCenter(Point p)
+	{
+		p.x -= size.width/2;
+		p.y -= size.height/2;
 		this.pos = p;
 		return this;
 	}

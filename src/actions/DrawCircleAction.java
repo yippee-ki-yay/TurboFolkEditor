@@ -22,14 +22,15 @@ public class DrawCircleAction extends AbstractAction
 		
 		putValue(SHORT_DESCRIPTION, "Draw circle");
 		putValue(SMALL_ICON, new ImageIcon("img/circle.png"));
-		putValue(NAME, "Draw circle");
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 			
 		((FrameView)(MainFrame.getInstance().getDesktopManager().getSelectedFrame())).
-        getFrame().getStateManager().setCircleState();
+                                getStateManager().setCircleState();
+		
+		MainFrame.getInstance().getStatusBar().setState("Add element");
 		
 	}
 

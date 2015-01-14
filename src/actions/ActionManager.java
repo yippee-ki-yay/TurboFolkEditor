@@ -16,6 +16,10 @@ public class ActionManager
 	private SaveAction saveAction = new SaveAction();
 	private AboutAction aboutAction = new AboutAction();
 	private ExitAction exitAction = new ExitAction();
+	private ZoomInAction zoomInAction = new ZoomInAction();
+	private ZoomOutAction zoomOutAction = new ZoomOutAction();
+	private RotateAction rotateAction = new RotateAction();
+	private RotateLeftAction rotateLeftAction = new RotateLeftAction();
 
 	private CascadeLayoutAction cascadeLayout = new CascadeLayoutAction();
 	private HorizontalLayoutAction horizontalLayout =
@@ -26,6 +30,7 @@ public class ActionManager
 	private DrawTriangleAction triangleAction = new DrawTriangleAction();
 	private DrawTreeAction treeAction = new DrawTreeAction();
 	private SelectAction selectAction = new SelectAction();
+	private LassoSelectAction lassoAction = new LassoSelectAction();
 	
 	public ExitAction getExitAction() {
 		return exitAction;
@@ -205,6 +210,48 @@ public class ActionManager
 	public void setSelectAction(SelectAction selectAction) {
 		this.selectAction = selectAction;
 	}
+
+	public LassoSelectAction getLassoAction() {
+		return lassoAction;
+	}
+
+	public void setLassoAction(LassoSelectAction lassoAction) {
+		this.lassoAction = lassoAction;
+	}
+
+	public ZoomInAction getZoomInAction() {
+		return zoomInAction;
+	}
+
+	public void setZoomInAction(ZoomInAction zoomInAction) {
+		this.zoomInAction = zoomInAction;
+	}
+
+	public ZoomOutAction getZoomOutAction() {
+		return zoomOutAction;
+	}
+
+	public void setZoomOutAction(ZoomOutAction zoomOutAction) {
+		this.zoomOutAction = zoomOutAction;
+	}
+
+	public RotateAction getRotateAction() {
+		return rotateAction;
+	}
+
+	public void setRotateAction(RotateAction rotateAction) {
+		this.rotateAction = rotateAction;
+	}
+
+    public RotateLeftAction getRotateLeftAction()
+    {
+        return rotateLeftAction;
+    }
+
+    public void setRotateLeftAction(RotateLeftAction rotateLeftAction)
+    {
+        this.rotateLeftAction = rotateLeftAction;
+    }
 	
 	
 }

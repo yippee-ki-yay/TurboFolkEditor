@@ -1,0 +1,4 @@
+Kada je element selektovan i double kil odradis na njega izgubi selekciju.
+Ne radi multi selekcija u drvetu
+Ne iscrtava trougao i drvo na pravoj poziciji
+Prilikom sacuvavanja uvek izbacuje dijalog

@@ -7,11 +7,13 @@ import java.awt.Stroke;
 
 import painters.TreePainter;
 
+@SuppressWarnings("serial")
 public class TreeElement extends FrameElement
 {
 	public TreeElement(Paint p, Stroke s, Point pos, Dimension size)
 	{
 		super(p, s, pos, size);
 		this.elemPainter = new TreePainter(this);
+		this.type = "Tree";
 	}
 }

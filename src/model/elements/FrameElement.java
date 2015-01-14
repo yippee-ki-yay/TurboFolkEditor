@@ -4,33 +4,46 @@ import java.awt.Dimension;
 import java.awt.Paint;
 import java.awt.Point;
 import java.awt.Stroke;
+import java.io.Serializable;
 
 import model.ElementNode;
-import model.FrameNode;
 import painters.ElementPainter;
+import serialization.SerializableStrokeAdapter;
 
-public abstract class FrameElement 
+public abstract class FrameElement implements Serializable 
 {
+	private static final long serialVersionUID = -2270785075856091231L;
+	
 	protected Paint paint;
-	protected Stroke stroke;
+    protected SerializableStrokeAdapter stroke;
 	
 	protected String name;
 	protected String desc;
+	protected String type;
 	
 	protected Point pos;
 
 	protected Dimension size;
 	
+	protected double scale;
+	protected double rotate;
+	protected double translateX;
+	protected double translateY;
+	
 	protected ElementPainter elemPainter;
 	
-	private ElementNode node;
+    private ElementNode node;
 
 	public FrameElement(Paint paint, Stroke stroke, Point pos, Dimension size) {
 		super();
 		this.paint = paint;
-		this.stroke = stroke;
+		setStroke(stroke);
 		this.pos = pos;
 		this.size = size;
+		this.scale = 1;
+		this.rotate = 0;
+		this.translateX = 0;
+		this.translateY = 0;
 	}
 
 	public Paint getPaint() {
@@ -46,7 +59,7 @@ public abstract class FrameElement
 	}
 
 	public void setStroke(Stroke stroke) {
-		this.stroke = stroke;
+		this.stroke = new SerializableStrokeAdapter(stroke);
 	}
 
 	public String getName() {
@@ -73,8 +86,17 @@ public abstract class FrameElement
 		this.pos = pos;
 	}
 	
-	public Dimension getSize() {
-		return size;
+	public Dimension getInitSize()
+	{
+	    return size;
+	}
+	
+	public Dimension getSize() 
+	{
+		Dimension tmp = new Dimension();
+		//resizujemo sa scale parametrom
+		tmp.setSize(size.width*getScale(), size.height*getScale()); 
+		return tmp;
 	}
 
 	public void setSize(Dimension size) {
@@ -96,5 +118,47 @@ public abstract class FrameElement
 	public void setNode(ElementNode newNode) {
 		this.node = newNode;
 	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	public double getScale() {
+		return scale;
+	}
+
+	public void setScale(double scale) {
+		this.scale = scale;
+	}
+
+	public double getRotate() {
+		return rotate;
+	}
+
+	public void setRotate(double rotate) {
+		this.rotate = rotate;
+	}
+
+	public double getTranslateX() {
+		return translateX;
+	}
+
+	public void setTranslateX(double translateX) {
+		this.translateX = translateX;
+	}
+
+	public double getTranslateY() {
+		return translateY;
+	}
+
+	public void setTranslateY(double translateY) {
+		this.translateY = translateY;
+	}
+
+	
 
 }

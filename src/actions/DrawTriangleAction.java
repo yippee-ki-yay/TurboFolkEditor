@@ -23,14 +23,15 @@ public class DrawTriangleAction extends AbstractAction
 		
 		putValue(SHORT_DESCRIPTION, "Draw triangle");
 		putValue(SMALL_ICON, new ImageIcon("img/triangle.png"));
-		putValue(NAME, "Draw triangle");
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 			
 		((FrameView)(MainFrame.getInstance().getDesktopManager().getSelectedFrame())).
-        getFrame().getStateManager().setTriangleState();
+        getStateManager().setTriangleState();
+		
+		MainFrame.getInstance().getStatusBar().setState("Add element");
 		
 	}
 

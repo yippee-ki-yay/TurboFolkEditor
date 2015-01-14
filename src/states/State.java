@@ -2,8 +2,15 @@ package states;
 
 import java.awt.event.MouseEvent;
 
-import model.FrameNode;
+import frame.FrameView;
 
-public interface State {
-	public void draw(MouseEvent e, FrameNode node);
+public class State
+{
+    public void draw(MouseEvent e, FrameView node){};
+
+    public void drag(MouseEvent e, FrameView node){};
+
+    public void released(MouseEvent e, FrameView node){};
+    
+    public void moved(MouseEvent e, FrameView node){};
 }

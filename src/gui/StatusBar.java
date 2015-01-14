@@ -18,23 +18,23 @@ public class StatusBar extends JPanel {
 		setLayout(new GridLayout(1, 5));
 		setBorder(new BevelBorder(BevelBorder.LOWERED));
 
-		state = new JLabel("Status", JLabel.CENTER);
+		state = new JLabel("Select", JLabel.CENTER);
 		state.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		add(state);
 
-		type = new JLabel("Status", JLabel.CENTER);
+		type = new JLabel(" ", JLabel.CENTER);
 		type.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		add(type);
 
-		name = new JLabel("Status", JLabel.CENTER);
+		name = new JLabel(" ", JLabel.CENTER);
 		name.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		add(name);
 
-		pos = new JLabel("Status", JLabel.CENTER);
+		pos = new JLabel(" ", JLabel.CENTER);
 		pos.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		add(pos);
 
-		dimension = new JLabel("Status", JLabel.CENTER);
+		dimension = new JLabel(" ", JLabel.CENTER);
 		dimension.setBorder(new BevelBorder(BevelBorder.LOWERED));
 		add(dimension);
 	}
@@ -43,40 +43,48 @@ public class StatusBar extends JPanel {
 		return state;
 	}
 
-	public void setState(JLabel state) {
-		this.state = state;
+	public void setState(String state) {
+		this.state.setText(state);
 	}
 
 	public JLabel getType() {
 		return type;
 	}
 
-	public void setType(JLabel type) {
-		this.type = type;
+	public void setType(String type) {
+		this.type.setText(type);
 	}
 
 	public JLabel getElementName() {
 		return name;
 	}
 
-	public void setElementName(JLabel name) {
-		this.name = name;
+	public void setElementName(String name) {
+		this.name.setText(name);
 	}
 
 	public JLabel getPos() {
 		return pos;
 	}
 
-	public void setPos(JLabel pos) {
-		this.pos = pos;
+	public void setPos(String pos) {
+		this.pos.setText(pos);
 	}
 
 	public JLabel getDimension() {
 		return dimension;
 	}
 
-	public void setDimension(JLabel dimension) {
-		this.dimension = dimension;
+	public void setDimension(String dimension) {
+		this.dimension.setText(dimension);
+	}
+	
+	public void selectedReset()
+	{
+		name.setText(" ");
+		type.setText(" ");
+		dimension.setText(" ");
+		pos.setText(" ");
 	}
 
 	

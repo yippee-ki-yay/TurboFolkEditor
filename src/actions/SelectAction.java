@@ -23,13 +23,14 @@ public class SelectAction extends AbstractAction
 		
 		putValue(SHORT_DESCRIPTION, "Select");
 		putValue(SMALL_ICON, new ImageIcon("img/select_icon.png"));
-		putValue(NAME, "Select");
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		((FrameView)(MainFrame.getInstance().getDesktopManager().getSelectedFrame())).
-        getFrame().getStateManager().setSelectionState();
+        getStateManager().setSelectionState();
+		
+		MainFrame.getInstance().getStatusBar().setState("Select");
 
 	}
 

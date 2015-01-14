@@ -2,15 +2,11 @@ package gui;
 
 import java.awt.Color;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JToggleButton;
 import javax.swing.JToolBar;
-import javax.swing.SwingConstants;
 
 import editorLook.MainFrame;
 
-@SuppressWarnings({ "serial", "unused" })
+@SuppressWarnings("serial")
 public class MyToolBar extends JToolBar{
 	
 	public MyToolBar(){
@@ -50,6 +46,14 @@ public class MyToolBar extends JToolBar{
 		add(MainFrame.getInstance().getActionManager().getCascadeLayout());
 		add(MainFrame.getInstance().getActionManager().getHorizontalLayout());
 		add(MainFrame.getInstance().getActionManager().getVerticalLayout());
+		
+		addSeparator();
+		add(MainFrame.getInstance().getActionManager().getZoomInAction());
+		add(MainFrame.getInstance().getActionManager().getZoomOutAction());	
+		
+		addSeparator();
+		add(MainFrame.getInstance().getActionManager().getRotateAction());
+		add(MainFrame.getInstance().getActionManager().getRotateLeftAction());
 		
 		
 		//toolbar je pokretljiv, probati i sa statičnim toolbarom

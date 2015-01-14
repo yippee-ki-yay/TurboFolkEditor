@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Point;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.event.EventListenerList;
@@ -9,15 +10,24 @@ import model.elements.FrameElement;
 import events.UpdateElementsEvent;
 import events.UpdateElementsListener;
 
-public class FrameModel 
+public class FrameModel implements Serializable
 {
-	private ArrayList<FrameElement> frameElements = new ArrayList<FrameElement>();
-	private EventListenerList listenerList = new EventListenerList();
-	UpdateElementsEvent updateEvent = null;
+	private static final long serialVersionUID = -6639337467009523942L;
+	
+	
+	 private ArrayList<FrameElement> frameElements = new ArrayList<FrameElement>();
+	transient private EventListenerList listenerList = new EventListenerList();
+	transient UpdateElementsEvent updateEvent = null;
 	
 	public void addElement(FrameElement elem)
 	{
 		frameElements.add(elem);
+		fireUpdatePreformed();
+	}
+	
+	public void removeElement(FrameElement elem)
+	{
+		frameElements.remove(elem);
 		fireUpdatePreformed();
 	}
 	
@@ -67,6 +77,12 @@ public class FrameModel
 	{
 		listenerList.remove(UpdateElementsListener.class, l);
 	}
+	
+	private Object readResolve(){
+		listenerList = new EventListenerList();
+		return this;
+		}
+
 	
 	public void fireUpdatePreformed()
 	{

@@ -11,6 +11,7 @@ import javax.swing.SwingUtilities;
 import model.FrameNode;
 import model.ProjectNode;
 import editorLook.MainFrame;
+import frame.FrameView;
 
 @SuppressWarnings("serial")
 public class DeleteAction extends AbstractAction
@@ -52,6 +53,26 @@ public class DeleteAction extends AbstractAction
     		SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());
     		
 		}
+		
+		//Prodjemo kroz sve selektovane elemente obrisemo elemente i njihove nodove
+		FrameView frame = (FrameView)MainFrame.getInstance().getDesktopManager().getSelectedFrame();
+		
+		if(frame == null)return;
+		
+		frame.getCommandManager().undoCommand();
+		
+		//ako nista nije selektovano nemas sta ni brisati
+		/*if(frame.getFrameNode().selectionModel.isEmpty())
+			return;
+		
+		for(FrameElement elem : frame.getFrameNode().selectionModel.getSelectedElements())
+		{
+			frame.getFrameNode().getModel().removeElement(elem); //ubijemo graficki prikaz
+			frame.getFrameNode().removeElement(elem.getNode()); //ubijemo stavku u drvetu
+			
+		}
+		frame.getFrameNode().selectionModel.removeAllSelectedElements();
+		SwingUtilities.updateComponentTreeUI(MainFrame.getInstance().getWorkspaceTree());*/
 	}
 
 }

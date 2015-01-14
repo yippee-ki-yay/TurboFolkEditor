@@ -7,6 +7,7 @@ import java.awt.Stroke;
 
 import painters.TrianglePainter;
 
+@SuppressWarnings("serial")
 public class TriangleElement extends FrameElement
 {
 
@@ -14,6 +15,7 @@ public class TriangleElement extends FrameElement
 		super(paint, stroke, pos, size);
 		
 		this.elemPainter = new TrianglePainter(this);
+		this.type = "Triangle";
 	}
 
 }

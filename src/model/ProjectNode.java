@@ -1,5 +1,6 @@
 package model;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -10,8 +11,10 @@ public class ProjectNode implements TreeNode, Serializable
 {
 	private static final long serialVersionUID = -4573316885575262635L;
 	
-	transient private ArrayList<FrameNode> frameNodes = new ArrayList<FrameNode>();
+	private ArrayList<FrameNode> frameNodes = new ArrayList<FrameNode>();
 	private String name;
+	
+	File saveFile;
 	
 	int id;
 	
@@ -49,7 +52,13 @@ public class ProjectNode implements TreeNode, Serializable
 		this.id = id;
 	}
 
+	public File getSaveFile() {
+		return saveFile;
+	}
 
+	public void setSaveFile(File saveFile) {
+		this.saveFile = saveFile;
+	}
 
 	@Override
 	public String toString()
