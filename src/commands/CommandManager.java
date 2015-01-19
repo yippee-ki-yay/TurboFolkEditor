@@ -18,9 +18,18 @@ public class CommandManager
 	
 	public void add(Command c)
 	{	
+	    //bez ovoga moras prvo redovati sve komande da bi posle novu izvrsio
+	  /*  
+	    while(idx < commandList.size())
+	    {
+	        commandList.remove(idx);
+	       
+	    }*/
+           
+	    idx = commandList.size();
+	    
 		commandList.add(c);
 		doCommand();
-		System.out.println(idx);
 	}
 	
 	public void doCommand()
@@ -39,7 +48,12 @@ public class CommandManager
 	{
 		if(idx  > 0){
 			MainFrame.getInstance().getActionManager().getRedoAction().setEnabled(true);
-			commandList.get(--idx ).undo();
+			
+		/*	if(((AddElementCommand)commandList.get(--idx )).undoovanje == true)
+			    commandList.get(--idx ).doCommand();
+			else*/
+			    commandList.get(--idx ).undo();
+			
 		}
 		if(idx ==0){
 			MainFrame.getInstance().getActionManager().getUndoAction().setEnabled(false);

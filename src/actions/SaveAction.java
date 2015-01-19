@@ -34,44 +34,44 @@ public class SaveAction extends AbstractAction
 	@Override
 	public void actionPerformed(ActionEvent arg0) 
 	{
-		
-		JFileChooser jfc = new JFileChooser();
-		
-		Object o = MainFrame.getInstance().getWorkspaceTree().getLastSelectedPathComponent();
-		ProjectNode project = null;
-		
-		if(o instanceof ProjectNode)
-			project = (ProjectNode)o;
-		else
-			return;
-		
-		File projectFile=project.getSaveFile();
-		
-		if (project.getSaveFile()==null){
-		         if(jfc.showSaveDialog(MainFrame.getInstance())==JFileChooser.APPROVE_OPTION){
-		                   projectFile=jfc.getSelectedFile();           	 
-		        	 
-		         }else{
-		        	return; 
-		         }
-		         
-		}     
-	      
-		         
-	    ObjectOutputStream os;
-		try {
-			os = new ObjectOutputStream(new FileOutputStream(projectFile));
-			os.writeObject(project);
-			project.setSaveFile(projectFile);
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-			
-	
-	
-		
+	    JFileChooser jfc = new JFileChooser();
+        jfc.setFileFilter(new ProjectFileFilter());
+        
+        ProjectNode project=MainFrame.getInstance().getWorkspaceTree().getCurrentProject();
+        
+        if(project != null)
+        {
+        File projectFile=project.getSaveFile();
+        
+        if (!project.isChanged()){
+            return;
+        }
+        
+        if (project.getSaveFile()==null){
+                 if(jfc.showSaveDialog(MainFrame.getInstance())==JFileChooser.APPROVE_OPTION){
+                           projectFile=jfc.getSelectedFile();                
+                     
+                 }else{
+                    return; 
+                 }
+                 
+        }     
+          
+                 
+        ObjectOutputStream os;
+        try {
+            os = new ObjectOutputStream(new FileOutputStream(projectFile));
+            os.writeObject(project);
+            project.setSaveFile(projectFile);
+            project.setChanged(false);
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+            
+        }
+        
 	}
 
 }

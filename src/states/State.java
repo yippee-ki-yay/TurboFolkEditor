@@ -13,4 +13,6 @@ public class State
     public void released(MouseEvent e, FrameView node){};
     
     public void moved(MouseEvent e, FrameView node){};
+    
+    public void pressed(MouseEvent e, FrameView node){};
 }

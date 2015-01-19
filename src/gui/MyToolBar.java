@@ -18,7 +18,6 @@ public class MyToolBar extends JToolBar{
 
 		//import, export, save
 		add(MainFrame.getInstance().getActionManager().getImportAction());
-		add(MainFrame.getInstance().getActionManager().getExportAction());
 		add(MainFrame.getInstance().getActionManager().getSaveAction());
 		
 		addSeparator();

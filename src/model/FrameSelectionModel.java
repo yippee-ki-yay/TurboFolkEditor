@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.DefaultSingleSelectionModel;
-
-import editorLook.MainFrame;
+import javax.swing.event.EventListenerList;
 
 import model.elements.FrameElement;
+import editorLook.MainFrame;
+import events.UpdateElementsEvent;
+import events.UpdateElementsListener;
 
 public class FrameSelectionModel extends DefaultSingleSelectionModel implements Serializable
 {
@@ -15,6 +17,9 @@ public class FrameSelectionModel extends DefaultSingleSelectionModel implements 
 	private static final long serialVersionUID = 1380193394149555735L;
 	
 	ArrayList<FrameElement> selectedElements = new ArrayList<FrameElement>();
+	
+	EventListenerList listenerList = new EventListenerList();
+	 UpdateElementsEvent event = null;
 	
 	private boolean multiSelection = false;
 	
@@ -38,6 +43,8 @@ public class FrameSelectionModel extends DefaultSingleSelectionModel implements 
 		MainFrame.getInstance().getStatusBar().setPos(pos);
 		MainFrame.getInstance().getStatusBar().setDimension(size);
 		selectedElements.add(e);
+		//fireUpdatePerformed();
+		ProjectNode.updateChanged(true);
 	}
 	
 	public FrameElement getSelectedElement()
@@ -54,6 +61,8 @@ public class FrameSelectionModel extends DefaultSingleSelectionModel implements 
 	{
 		MainFrame.getInstance().getStatusBar().selectedReset();
 		selectedElements.remove(e);
+		//fireUpdatePerformed();
+		ProjectNode.updateChanged(true);
 	}
 	
 	public boolean isElementSelected(FrameElement e)
@@ -65,6 +74,8 @@ public class FrameSelectionModel extends DefaultSingleSelectionModel implements 
 	{
 		MainFrame.getInstance().getStatusBar().selectedReset();
 		selectedElements.clear();
+		//fireUpdatePerformed();
+		ProjectNode.updateChanged(true);
 	}
 
 	public ArrayList<FrameElement> getSelectedElements() {
@@ -83,6 +94,26 @@ public class FrameSelectionModel extends DefaultSingleSelectionModel implements 
 		this.multiSelection = multiSelection;
 	}
 	
-	
+	 public void addUpdateListener(UpdateElementsListener l) {
+         listenerList.add(UpdateElementsListener.class, l);
+     }
+
+     public void removeUpdateListener(UpdateElementsListener l) {
+         listenerList.remove(UpdateElementsListener.class, l);
+     }
+     
+     /**
+         * Javljamo svim listenerima da se događaj desio 
+         */
+        public void fireUpdatePerformed() {
+             Object[] listeners = listenerList.getListenerList();
+             for (int i = listeners.length-2; i>=0; i-=2) {
+                 if (listeners[i]==UpdateElementsListener.class) {
+                     if (event == null)
+                         event = new UpdateElementsEvent(this);
+                     ((UpdateElementsListener)listeners[i+1]).updatePerformed(event);
+                 }
+             }
+         }
 
 }

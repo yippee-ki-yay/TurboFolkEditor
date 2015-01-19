@@ -1,12 +1,14 @@
 package commands;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Point;
 
 import javax.swing.SwingUtilities;
 
 import model.ElementNode;
 import model.ElementNode.ElemType;
+import model.ProjectNode;
 import model.elements.ElementBuilder;
 import model.elements.FrameElement;
 import editorLook.MainFrame;
@@ -52,7 +54,8 @@ public class AddElementCommand implements Command
             {
              //   if (frame.getFrameNode().getModel().isSpaceFree(pos))
                 {
-                    elem = new ElementBuilder().setPosCenter(pos).buildRectangle();
+                    elem = new ElementBuilder().setPosCenter(pos).
+                            setSize(new Dimension(80, 50)).buildRectangle();
 
                     // Nova instanca noda u drvetu
                     elemNode = new ElementNode(frame.getFrameNode(), "Rectangle"
@@ -85,7 +88,8 @@ public class AddElementCommand implements Command
               //  if (frame.getFrameNode().getModel().isSpaceFree(pos))
                 {
                     elem = new ElementBuilder().setPosCenter(pos)
-                            .setPaint(new Color(0, 255, 0)).buildTree();
+                            .setStrokeColor(new Color(0, 255, 0)).setSize(new Dimension(100, 110))
+                            .buildTree();
 
                     elemNode = new ElementNode(frame.getFrameNode(), "Tree"
                             + MainFrame.element_id, ElemType.TREE, elem);
@@ -104,7 +108,8 @@ public class AddElementCommand implements Command
         elem.setNode(elemNode);
 
         // osvezimo iscrtacanje prozora i drveta i updejtujemo brojac elementa
-        frame.repaint();
+        frame.getFrameNode().getModel().fireUpdatePreformed();
+        ProjectNode.updateChanged(true);
         MainFrame.element_id++;
         SwingUtilities.updateComponentTreeUI(MainFrame.getInstance()
                 .getWorkspaceTree());

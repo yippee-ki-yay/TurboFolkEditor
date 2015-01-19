@@ -32,12 +32,17 @@ public abstract class ElementPainter implements Serializable
                 element.getSize().height / 2);
         gg.scale(element.getScale(), element.getScale());
 
-        gg.setPaint(element.getPaint());
+        gg.setPaint(element.getStrokeColor()); 
         gg.setStroke(element.getStroke());
         gg.draw(getShape());
+        
+        gg.setPaint(element.getPaint());
+        gg.fill(getShape()); 
+
 
         // gg.fill(getShape());
         gg.setTransform(oldTransform);
+      
 
     }
 

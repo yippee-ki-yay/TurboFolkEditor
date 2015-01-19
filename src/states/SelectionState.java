@@ -8,13 +8,18 @@ import javax.swing.SwingUtilities;
 import model.elements.FrameElement;
 import editorLook.MainFrame;
 import frame.FrameView;
+import frame.FrameView.Handle;
 
 public class SelectionState extends State
 {
 
+    private Handle handle = null;
+    private boolean jednom = true;
+    
     @Override
     public void draw(MouseEvent e, FrameView node)
     {
+        
         Point pos = node.pointToUserSpace(e.getPoint());
 
         if (!e.isControlDown())
@@ -27,9 +32,10 @@ public class SelectionState extends State
         {
             // uzmemo point i proverimo da li je ubo neki element pa taj dodamo
             // u listu
-
+            
             FrameElement clickedElement = node.getFrameNode().getModel()
                     .getElementAt(pos);
+            
 
             if (clickedElement != null)
             {
@@ -48,8 +54,7 @@ public class SelectionState extends State
                     
 
                 node.getFrameNode().getModel().fireUpdatePreformed();
-                MainFrame.getInstance().getWorkspaceTree()
-                        .selectElementNode(clickedElement.getNode());
+              
             } else
             {
                 node.getFrameNode().selectionModel.removeAllSelectedElements();
@@ -75,28 +80,39 @@ public class SelectionState extends State
     }
 
     @Override
+    public void pressed(MouseEvent e, FrameView view)
+    {
+       handle = view.getHandleFromPoint(view.pointToUserSpace(e.getPoint()));
+     
+       jednom = false;
+    }
+    
+    @Override
     public void drag(MouseEvent e, FrameView node)
     {
-
-        Point pos = node.pointToUserSpace(e.getPoint());
-
-        FrameElement dragedElement = node.getFrameNode().selectionModel
-                .getSelectedElement();
-
-        if (dragedElement != null)
-        {
-           if( node.getHandleFromPoint(pos) != null)
-               node.getStateManager().setResizeState();
+           if( handle != null)
+           {
+               node.getStateManager().setResizeState(handle);
+           }
            else
-            node.getStateManager().setMoveState();
-        }
+           {
+               Point pos = node.pointToUserSpace(e.getPoint());
+               
+               FrameElement clickedElement = node.getFrameNode().getModel()
+                       .getElementAt(pos);
+               if(clickedElement != null)
+               node.getStateManager().setMoveState();
+           
+           }
+        
+            
 
     }
 
     @Override
     public void released(MouseEvent e, FrameView node)
     {
-        // TODO Auto-generated method stub
+        jednom = true;
 
     }
     
@@ -104,6 +120,7 @@ public class SelectionState extends State
     public void moved(MouseEvent e, FrameView frame)
     {
        frame.setMouseCursor(frame.pointToUserSpace(e.getPoint()));
+      
     }
 
 }

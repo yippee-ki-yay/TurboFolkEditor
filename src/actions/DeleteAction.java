@@ -10,6 +10,9 @@ import javax.swing.SwingUtilities;
 
 import model.FrameNode;
 import model.ProjectNode;
+
+import commands.DeleteElementCommand;
+
 import editorLook.MainFrame;
 import frame.FrameView;
 
@@ -59,12 +62,15 @@ public class DeleteAction extends AbstractAction
 		
 		if(frame == null)return;
 		
-		frame.getCommandManager().undoCommand();
 		
 		//ako nista nije selektovano nemas sta ni brisati
-		/*if(frame.getFrameNode().selectionModel.isEmpty())
+		if(frame.getFrameNode().selectionModel.isEmpty())
 			return;
 		
+		frame.getCommandManager().add(new DeleteElementCommand(frame,
+		        frame.getFrameNode().selectionModel.getSelectedElements()));
+		
+		/*
 		for(FrameElement elem : frame.getFrameNode().selectionModel.getSelectedElements())
 		{
 			frame.getFrameNode().getModel().removeElement(elem); //ubijemo graficki prikaz

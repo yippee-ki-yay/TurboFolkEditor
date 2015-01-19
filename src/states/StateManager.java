@@ -1,5 +1,7 @@
 package states;
 
+import frame.FrameView.Handle;
+
 
 public class StateManager
 {
@@ -105,8 +107,9 @@ public class StateManager
 
     }
     
-    public void setResizeState()
+    public void setResizeState(Handle h)
     {
+        resizeState.setHandle(h);
         currState = resizeState;
     }
 

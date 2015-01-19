@@ -4,13 +4,24 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 
 import model.elements.FrameElement;
+
+import commands.ResizeElementCommand;
+
 import frame.FrameView;
 import frame.FrameView.Handle;
 
 public class ResizeState extends State
 {
-
+    private FrameElement resizeElement;
+    private Point oldPos;
+    private double oldScale;
+    private boolean jednom = true;
     private Handle handle = null;
+    
+    public void setHandle(Handle h)
+    {
+        this.handle = h;
+    }
     
     @Override
     public void draw(MouseEvent e, FrameView node)
@@ -23,15 +34,23 @@ public class ResizeState extends State
     {
         Point pos = node.pointToUserSpace(e.getPoint());
 
-        FrameElement resizeElement = node.getFrameNode().selectionModel
+        resizeElement = node.getFrameNode().selectionModel
                 .getSelectedElement();
+        
 
         //Uzmi koj handle smo uhvatili samo na pocetku 
-        if(handle == null)
-            handle = node.getHandleFromPoint(pos);
+     
 
         if (resizeElement != null && handle != null)
         {
+            if(jednom == true)
+            {
+                oldPos = resizeElement.getPos();
+                oldScale = resizeElement.getScale();
+            }
+            jednom = false;
+            
+            
            if(handle == Handle.SouthEast)
            {
                 //Trenutna pozicija misa minus pozicija elemnta daju nove velicine elemnta
@@ -101,7 +120,7 @@ public class ResizeState extends State
                double scaleX=scaledWidth/resizeElement.getInitSize().getWidth();
                double scaleY=scaledHeight/resizeElement.getInitSize().getHeight();
                
-               double oldWidth = resizeElement.getSize().getWidth();
+               double oldHeight = resizeElement.getSize().getHeight();
                
                //da ocuvamo oblik koja osa je najmanje pomerena za toliko sve skaliramo
                double newScale = 1;
@@ -119,7 +138,7 @@ public class ResizeState extends State
                    resizeElement.setScale(newScale);
                
                resizeElement.getPos().y = 
-                       (int) (resizeElement.getPos().getY() + oldWidth - resizeElement.getSize().getWidth());
+                       (int) (resizeElement.getPos().getY() + oldHeight - resizeElement.getSize().getHeight());
            }
            else if(handle == Handle.NorthWest)
            {
@@ -168,6 +187,9 @@ public class ResizeState extends State
     public void released(MouseEvent e, FrameView node)
     {
         handle = null;
+        jednom = true;
+        node.getCommandManager().add(new ResizeElementCommand(node, resizeElement, 
+                oldPos,oldScale));
         node.getStateManager().setSelectionState();
     }
 

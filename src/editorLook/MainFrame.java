@@ -73,7 +73,7 @@ public class MainFrame extends JFrame
         try
         {
             // WebLookAndFeel.install();
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            UIManager.setLookAndFeel("com.seaglasslookandfeel.SeaGlassLookAndFeel");
             SwingUtilities.updateComponentTreeUI(this);
         } catch (Exception e)
         {

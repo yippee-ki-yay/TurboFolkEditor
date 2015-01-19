@@ -1,5 +1,6 @@
 package model.elements;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Paint;
 import java.awt.Point;
@@ -31,15 +32,17 @@ public abstract class FrameElement implements Serializable
 	protected double translateY;
 	
 	protected ElementPainter elemPainter;
+	protected Color strokeColor;
 	
     private ElementNode node;
 
-	public FrameElement(Paint paint, Stroke stroke, Point pos, Dimension size) {
+	public FrameElement(Paint paint, Stroke stroke, Point pos, Dimension size, Color strokeColor) {
 		super();
 		this.paint = paint;
 		setStroke(stroke);
 		this.pos = pos;
 		this.size = size;
+		this.strokeColor = strokeColor;
 		this.scale = 1;
 		this.rotate = 0;
 		this.translateX = 0;
@@ -61,6 +64,14 @@ public abstract class FrameElement implements Serializable
 	public void setStroke(Stroke stroke) {
 		this.stroke = new SerializableStrokeAdapter(stroke);
 	}
+	
+	   public Color getStrokeColor() {
+	        return strokeColor;
+	    }
+
+	    public void setStrokeColor(Color strokeColor) {
+	        this.strokeColor = strokeColor;
+	    }
 
 	public String getName() {
 		return name;
@@ -140,6 +151,8 @@ public abstract class FrameElement implements Serializable
 	}
 
 	public void setRotate(double rotate) {
+	    if(Math.abs(rotate - 2*Math.PI) < 0.01 || Math.abs(rotate + 2*Math.PI) < 0.01)
+            rotate = 0;
 		this.rotate = rotate;
 	}
 

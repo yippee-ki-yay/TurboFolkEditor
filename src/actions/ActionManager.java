@@ -11,14 +11,14 @@ public class ActionManager
 	private NextFormAction nextAction = new NextFormAction();
 	private UndoAction undoAction = new UndoAction();
 	private RedoAction redoAction = new RedoAction();
-	private ImportAction importAction = new ImportAction();
+	private LoadAction loadAction = new LoadAction();
 	private ExportAction exportAction = new ExportAction();
 	private SaveAction saveAction = new SaveAction();
 	private AboutAction aboutAction = new AboutAction();
 	private ExitAction exitAction = new ExitAction();
 	private ZoomInAction zoomInAction = new ZoomInAction();
 	private ZoomOutAction zoomOutAction = new ZoomOutAction();
-	private RotateAction rotateAction = new RotateAction();
+	private RotateRightAction rotateRightAction = new RotateRightAction();
 	private RotateLeftAction rotateLeftAction = new RotateLeftAction();
 
 	private CascadeLayoutAction cascadeLayout = new CascadeLayoutAction();
@@ -147,12 +147,12 @@ public class ActionManager
 		this.redoAction = redoAction;
 	}
 
-	public ImportAction getImportAction() {
-		return importAction;
+	public LoadAction getImportAction() {
+		return loadAction;
 	}
 
-	public void setImportAction(ImportAction importAction) {
-		this.importAction = importAction;
+	public void setImportAction(LoadAction loadAction) {
+		this.loadAction = loadAction;
 	}
 
 	public ExportAction getExportAction() {
@@ -235,12 +235,12 @@ public class ActionManager
 		this.zoomOutAction = zoomOutAction;
 	}
 
-	public RotateAction getRotateAction() {
-		return rotateAction;
+	public RotateRightAction getRotateAction() {
+		return rotateRightAction;
 	}
 
-	public void setRotateAction(RotateAction rotateAction) {
-		this.rotateAction = rotateAction;
+	public void setRotateAction(RotateRightAction rotateRightAction) {
+		this.rotateRightAction = rotateRightAction;
 	}
 
     public RotateLeftAction getRotateLeftAction()

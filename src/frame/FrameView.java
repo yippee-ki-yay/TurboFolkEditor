@@ -61,7 +61,8 @@ public class FrameView extends JInternalFrame implements
     private int hScroll = 100;
     private int vScroll = 100;
 
-    private double scaleFactor = 0.2;
+    private double scaleFactor = 1.2;
+    private double translateFactor = 10;
 
     private CommandManager commandManager = new CommandManager();
 
@@ -82,7 +83,7 @@ public class FrameView extends JInternalFrame implements
     public FrameView(String title, int id, final FrameNode frameNode)
     {
         super(title, true, true, true, true);
-        setSize(200, 200);
+        setSize(450, 450);
         setResizable(true);
         setVisible(true);
         this.frameNode = frameNode;
@@ -152,6 +153,9 @@ public class FrameView extends JInternalFrame implements
                     BasicStroke.JOIN_BEVEL, 1f, new float[]
                     { (float) 3, (float) 6 }, 0));
             g2.draw(selectionRectangle);
+            
+            MainFrame.getInstance().getWorkspaceTree()
+            .selectElementNode(FrameView.this);
 
         }
     }
@@ -166,88 +170,98 @@ public class FrameView extends JInternalFrame implements
                     { 3f, 6f }, 0));
             g2.setPaint(Color.BLACK);
 
-            g2.drawRect((int) elem.getPos().getX(), (int) elem.getPos().getY(),
-                    (int) elem.getSize().getWidth(), (int) elem.getSize()
-                            .getHeight());
-
-            // for(Handle h : Handle.values())
-            {
-
-                double size = handle_size;
-                double x = elem.getPos().getX();
-                double y = elem.getPos().getY();
-                double w = elem.getSize().getWidth();
-                double h = elem.getSize().getHeight();
-
-                g2.fill(new Rectangle2D.Double(x - size / 2, y - size / 2,
-                        size, size));
-                g2.fill(new Rectangle2D.Double(x - size / 2 + w / 2, y - size
-                        / 2, size, size));
-                g2.fill(new Rectangle2D.Double(x - size / 2 + w, y - size / 2,
-                        size, size));
-
-                g2.fill(new Rectangle2D.Double(x - size / 2, y - size / 2 + h
-                        / 2, size, size));
-                g2.fill(new Rectangle2D.Double(x - size / 2 + w, y - size / 2
-                        + h / 2, size, size));
-
-                g2.fill(new Rectangle2D.Double(x - size / 2, y - size / 2 + h,
-                        size, size));
-                g2.fill(new Rectangle2D.Double(x - size / 2 + w / 2, y - size
-                        / 2 + h, size, size));
-                g2.fill(new Rectangle2D.Double(x - size / 2 + w, y - size / 2
-                        + h, size, size));
+            if (elem.getRotate() == 0 || elem.getRotate() == Math.PI || elem.getRotate() == -Math.PI)
+                g2.drawRect((int)elem.getPos().getX(), (int)elem.getPos().getY(),
+                        (int)elem.getSize().getWidth(), (int)elem.getSize().getHeight());
+            else {
+                double razlika = (elem.getSize().getWidth()-elem.getSize().getHeight())/2;
+                g2.drawRect((int)(elem.getPos().getX() + razlika), (int)(elem.getPos().getY() - razlika),
+                        (int)(elem.getSize().getHeight()), (int)(elem.getSize().getWidth()));
             }
+
+             for(Handle h : Handle.values())
+            {
+                 paintSelectionHandle(g2, getPointOfHandle(
+                         elem.getPos(), elem.getSize(), h, elem));
+            }
+        
         }
 
     }
     
     //Vraca poziciju handela
     Point2D.Double getPointOfHandle(Point2D elemPos, Dimension size,
-            Handle handle)
+            Handle handle, FrameElement elem)
     {
         double x = 0, y = 0;
 
-        // Određivanje y koordinate
-
-        // Ako su gornji hendlovi
-        if (handle == Handle.NorthWest || handle == Handle.North
-                || handle == Handle.NorthEast)
-        {
-            y = elemPos.getY();
+        if (elem.getRotate() == 0 || elem.getRotate() == Math.PI || elem.getRotate() == -Math.PI){
+            // Ako su gornji hendlovi
+            if(handle == Handle.NorthWest || handle == Handle.North || handle == Handle.NorthEast){
+                y = elemPos.getY();
+            }
+            
+            if(handle == Handle.East || handle == Handle.West){
+                y = elemPos.getY() + size.getHeight()/2;
+            }
+            
+            //Ako su donji
+            if(handle == Handle.SouthWest || handle == Handle.South || handle == Handle.SouthEast){
+                y = elemPos.getY() + size.getHeight();
+            }
+            // Određivanje x koordinate     
+            // Ako su levi
+            if(handle == Handle.NorthWest || handle == Handle.West || handle == Handle.SouthWest){
+                x = elemPos.getX();
+            }
+            
+            if(handle == Handle.North || handle == Handle.South){
+                x = elemPos.getX() + size.getWidth()/2;
+            }
+            
+            // ako su desni
+            if(handle == Handle.NorthEast || handle == Handle.East || handle == Handle.SouthEast){
+                x = elemPos.getX() + size.getWidth();
+            }   
+        }   
+        else {
+            double razlika = (elem.getSize().getWidth() - elem.getSize().getHeight())/2;
+            
+            if(handle == Handle.NorthWest || handle == Handle.North || handle == Handle.NorthEast){
+                y = elemPos.getY() - razlika;
+            }
+            
+            if(handle == Handle.East || handle == Handle.West){
+                y = elemPos.getY() + size.getWidth()/2 - razlika;
+            }
+            
+            //Ako su donji
+            if(handle == Handle.SouthWest || handle == Handle.South || handle == Handle.SouthEast){
+                y = elemPos.getY() + size.getWidth() - razlika;
+            }
+            // Ako su levi
+            if(handle == Handle.NorthWest || handle == Handle.West || handle == Handle.SouthWest){
+                x = elemPos.getX() + razlika;
+            }
+            
+            if(handle == Handle.North || handle == Handle.South){
+                x = elemPos.getX() + size.getHeight()/2 + razlika;
+            }
+            
+            // ako su desni
+            if(handle == Handle.NorthEast || handle == Handle.East || handle == Handle.SouthEast){
+                x = elemPos.getX() + size.getHeight() + razlika;
+            }   
         }
-        // Ako su centralni po y osi
-        if (handle == Handle.East || handle == Handle.West)
-        {
-            y = elemPos.getY() + size.getHeight() / 2;
-        }
-        // Ako su donji
-        if (handle == Handle.SouthWest || handle == Handle.South
-                || handle == Handle.SouthEast)
-        {
-            y = elemPos.getY() + size.getHeight();
-        }
-
-        // Određivanje x koordinate
-
-        // Ako su levi
-        if (handle == Handle.NorthWest || handle == Handle.West
-                || handle == Handle.SouthWest)
-        {
-            x = elemPos.getX();
-        }
-        // ako su centralni po x osi
-        if (handle == Handle.North || handle == Handle.South)
-        {
-            x = elemPos.getX() + size.getWidth() / 2;
-        }
-        // ako su desni
-        if (handle == Handle.NorthEast || handle == Handle.East
-                || handle == Handle.SouthEast)
-            x = elemPos.getX() + size.getWidth();
 
         return new Point2D.Double(x, y);
 
+    }
+    
+    private void paintSelectionHandle(Graphics2D g2, Point2D position){
+        double size = handle_size;
+        g2.fill(new Rectangle2D.Double(position.getX()-size/2, position.getY()-size/2, 
+                size, size));   
     }
 
     public void setMouseCursor(Point2D point)
@@ -300,7 +314,7 @@ public class FrameView extends JInternalFrame implements
     {
 
         Point2D h = getPointOfHandle(element.getPos(), element.getSize(),
-                handle);
+                handle, element);
 
         // ako se nalazi u x opsegu
      /*   if (p.getX() >= h.getX() && p.getX() <= h.getX() + element.getSize().width)
@@ -333,7 +347,7 @@ public class FrameView extends JInternalFrame implements
         @Override
         public void mousePressed(MouseEvent e)
         {
-            
+            stateManager.getState().pressed(e, FrameView.this);
         }
         @Override
         public void mouseDragged(MouseEvent e)
@@ -358,33 +372,51 @@ public class FrameView extends JInternalFrame implements
         public void mouseWheelMoved(MouseWheelEvent e)
         {
 
-            if (e.getWheelRotation() > 0)
-            {
-                scaling += e.getWheelRotation() * scaleFactor;
-            } else
-            {
-                scaling = 1;
-                scaling += e.getWheelRotation() * scaleFactor;
+            if((e.getModifiers()&MouseWheelEvent.CTRL_MASK) != 0){ // Ako pritisnut Ctrl
+                // Radimo zoom u tački (diskretni zoom)
+                // Prvo je potrebno da odredimo novo skaliranje 
+                double newScaling = scaling;
+                if(e.getWheelRotation()>0)
+                    newScaling *= (double)e.getWheelRotation()*scaleFactor;
+                else
+                    newScaling /= -(double)e.getWheelRotation()*scaleFactor;
+                // Zatim je potrebno da skaliranje održimo u intervalu [0.2, 5]
+                if(newScaling < 0.2)
+                    newScaling = 0.2;
+                if(newScaling > 5)
+                    newScaling = 5;
+                
+                Point oldPosition = e.getPoint();
+                oldPosition = pointToUserSpace(oldPosition);
+                
+                scaling = newScaling;
+                updateTransformation();
+                
+                Point newPosition = e.getPoint();
+                newPosition = pointToUserSpace(newPosition);
+                
+                translateX +=  newPosition.getX() - oldPosition.getX();
+                translateY += newPosition.getY() - oldPosition.getY();
+                
+                verticalScroll.setVisibleAmount((int) (20/scaling));
+                horizontalScroll.setVisibleAmount((int) (20/scaling));
+                
+                updateTransformation();
+
+            }else if((e.getModifiers()&MouseWheelEvent.SHIFT_MASK) != 0){  // Ako je pritisnut Shift
+                    translateX += (double)e.getWheelRotation() * translateFactor/scaling;
+            }else{ // u ostalim slučajevima vršimo skrolovanje po Y osi
+                translateY += (double)e.getWheelRotation() * translateFactor/scaling;
             }
-
-            Point preZuma = pointToUserSpace(e.getPoint());
-
+            
             updateTransformation();
-
-            Point posleZuma = pointToUserSpace(e.getPoint());
-
-            translateX = posleZuma.x - preZuma.x;
-            translateY = posleZuma.y - preZuma.y;
-
-            updateTransformation();
-
             repaint();
         }
     }
 
     public void updateTransformation()
     {
-        // transformation.setToIdentity();
+         transformation.setToIdentity();
         transformation.translate(translateX, translateY);
         transformation.scale(scaling, scaling);
 
@@ -439,21 +471,102 @@ public class FrameView extends JInternalFrame implements
     @Override
     public void adjustmentValueChanged(AdjustmentEvent e)
     {
-        if (e.getAdjustable().getOrientation() == Adjustable.HORIZONTAL)
-        {
-            translateX = e.getValue() - hScroll;
-            hScroll = e.getValue();
-            updateTransformation();
-            repaint();
-        } else if (e.getAdjustable().getOrientation() == Adjustable.VERTICAL)
-        {
-            translateY = e.getValue() - vScroll;
-            vScroll = e.getValue();
-            updateTransformation();
-            repaint();
+        if(e.getAdjustable().getOrientation()==Adjustable.HORIZONTAL){
+            if(hScroll<e.getValue()){
+                translateX+=(double)((e.getValue()-hScroll)*(-translateFactor))/transformation.getScaleX();
+            
+            }
+            else{
+                translateX+=(double)((e.getValue()-hScroll)*(-translateFactor))/transformation.getScaleX();
+               
+            }
+            hScroll=e.getValue();
+            
         }
+        else{
+            if(vScroll<e.getValue()){          
+                translateY+=(double)((e.getValue()-vScroll)*(-translateFactor))/transformation.getScaleX();          
+            }
+            else{
+                translateY+=(double)((e.getValue()-vScroll)*(-translateFactor))/transformation.getScaleX();
+                 
+            }
+            vScroll=e.getValue();
+        }
+        updateTransformation();
+        repaint();
 
     }
+    
+    public void zoomIn(){
+        double newScaling = scaling;
+        
+        newScaling *= scaleFactor;
+        
+        // Zatim je potrebno da skaliranje održimo u intervalu [0.2, 5]
+        if(newScaling < 0.2)
+            newScaling = 0.2;
+        if(newScaling > 5)
+            newScaling = 5;
+        
+        /* newScaling je novi parametar skaliranja (članovi m00 i m11 transformacione matrice)
+         * Prilikom skaliranja dolazi do pomeranja userspace koordinata na kojima se nalazi pokazivač miša.
+         * Da bi dobili ispravan Point zoom moramo izvršiti translaciju tako da poništimo "smicanje" usled skaliranja 
+         * tj. moramo postići da se userspace koordinate miša ne promene.
+         */
+        
+        Point oldPosition = new Point(getWidth()/2,getHeight()/2);
+        oldPosition = pointToUserSpace(oldPosition);
+        
+        scaling = newScaling;
+        updateTransformation();
+        
+        Point newPosition = new Point(getWidth()/2,getHeight()/2);
+        newPosition = pointToUserSpace(newPosition);
+        
+        translateX +=  (int) (newPosition.getX() - oldPosition.getX());
+        translateY += (int) (newPosition.getY() - oldPosition.getY());
+        
+        verticalScroll.setVisibleAmount((int) (20/scaling));
+        horizontalScroll.setVisibleAmount((int) (20/scaling));
+        
+        updateTransformation();      
+    }
+    
+    public void zoomOut(){
+        double newScaling = scaling;
+        
+        newScaling /= scaleFactor;
+        
+        // Zatim je potrebno da skaliranje održimo u intervalu [0.2, 5]
+        if(newScaling < 0.2)
+            newScaling = 0.2;
+        if(newScaling > 5)
+            newScaling = 5;
+        
+        /* newScaling je novi parametar skaliranja (članovi m00 i m11 transformacione matrice)
+         * Prilikom skaliranja dolazi do pomeranja userspace koordinata na kojima se nalazi pokazivač miša.
+         * Da bi dobili ispravan Point zoom moramo izvršiti translaciju tako da poništimo "smicanje" usled skaliranja 
+         * tj. moramo postići da se userspace koordinate miša ne promene.
+         */
+        
+        Point oldPosition = new Point(getWidth()/2,getHeight()/2);
+        oldPosition = pointToUserSpace(oldPosition);
+        
+        scaling = newScaling;
+        updateTransformation();
+        
+        Point newPosition = new Point(getWidth()/2,getHeight()/2);
+        newPosition = pointToUserSpace(newPosition);
+        
+        translateX +=  (int) (newPosition.getX() - oldPosition.getX());
+        translateY += (int) (newPosition.getY() - oldPosition.getY());
+        
+        verticalScroll.setVisibleAmount((int) (20/scaling));
+        horizontalScroll.setVisibleAmount((int) (20/scaling));
+        
+        updateTransformation();      
+    }   
 
     public Rectangle2D.Double getSelectionRectangle()
     {

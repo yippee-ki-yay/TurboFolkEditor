@@ -7,6 +7,9 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
+import editorLook.MainFrame;
+import frame.FrameView;
+
 
 @SuppressWarnings("serial")
 public class ZoomInAction extends AbstractAction
@@ -23,10 +26,12 @@ public class ZoomInAction extends AbstractAction
 	}
 	
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-			
-	
+	public void actionPerformed(ActionEvent arg0) 
+	{
+		FrameView frame = (FrameView) MainFrame.getInstance().
+		                              getDesktopManager().getSelectedFrame();
 		
+		frame.zoomIn();
 	}
 
 }
